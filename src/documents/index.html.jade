@@ -1,0 +1,141 @@
+doctype html
+html(lang="en")
+  head
+    title="Ricky Miller"
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    meta(name="keywords" content="rmill,rmill.ca,ricky miller,ricky,miller,html5,wordpress,javascript,js,node,php,three.js,socket.io")
+    meta(name="description" content="Making the future web… today!")
+    meta(name="author" content="Ricky Miller")
+
+    meta(property="og:title" content="rmill")
+    meta(property="og:type" content="website")
+    meta(property="og:image" content="http://rmill.ca/assets/icon.png")
+    meta(property="og:url" content="http://rmill.ca/")
+    meta(property="og:site_name" content="rmill")
+
+    // meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+
+    link(href="css/style.min.css" rel="stylesheet")
+    link(href="favicon.ico" rel="shortcut icon" type="image/x-icon")
+  body
+    .top
+      .banner
+        .col
+          span.me
+            | Ricky Miller
+          br
+          em (
+            a(href="mailto:ricky.miller@gmail.com") ricky.miller@gmail.com
+            )
+        .col
+          | Is an interactive designer/developer
+          br
+          | in Ottawa, ON. [
+          a(href="https://maps.google.com/?q=Ottawa,Ontario,ON+Canada&t=m&z=9" target="_blank") …
+          ]
+        .col
+          | Creating expressive, dynamic experiences
+          br
+          | for digital platforms.
+        nav
+          ul
+            li
+              a(href="#" data-to="capabilities" class="roll")
+                span(data-title="capabilities") capabilities
+            li
+              a(href="#" data-to="brands" class="roll")
+                span(data-title="brands") brands
+            li
+              a(href="#" data-to="more" class="roll")
+                span(data-title="more…") more…
+    .content
+
+      section.capabilities
+        
+        :t(render="markdown")
+
+          <h1>Capabilities</h1>
+          
+          <h2>Front End</h2>
+          
+          Excellent knowledge of HTML(5), CSS, Java$cript (including, but not limited to libraries and MVC frameworks: [jQuery](http://jquery.com/), [BackBone.js](http://backbonejs.org/), [Ember.js](http://emberjs.com/) and [Meteor](http://www.meteor.com/)). Data Structures (XML, JSON) <br /> and Flash/ActionScript. Experience creating RealTime<small>™</small> toys with [Three.js](http://threejs.org/) and [Socket.io](http://socket.io/)
+
+          <h2>Back End</h2>
+
+          Experience with PHP (including, but not limited to frameworks: [CakePHP](http://cakephp.org/), [CodeIgniter](http://ellislab.com/codeigniter) and [Zend](http://framework.zend.com/). Extensive knowledge of PHP content management systems: [Wordpress](http://wordpress.org/), [ExpressionEngine](http://ellislab.com/expressionengine), [Drupal](https://drupal.org/) <br /> and [Joomla](http://www.joomla.org/). Familiarity with [Python](http://www.python.org/) and frameworks such as [Flask](http://flask.pocoo.org/) and [Django](https://www.djangoproject.com/). Excellent knowledge <br /> of [Node.js](http://nodejs.org/) and [NPM](https://npmjs.org/).
+            
+          <h2>Data</h2>
+          
+          Experience with [MYSQL](http://mysql.com/), .NET/SQL, NOSQL: [Redis](http://redis.io/), [MongoDB](http://www.mongodb.org/), [CouchDB](http://couchdb.apache.org/)
+
+          <h2>APIs</h2>
+
+          Knowledge and experience integrating with a variety of external APIs, in particular: [Twitter](https://twitter.com/), [Facebook](https://facebook.com/), [Google Maps](https://maps.google.com/) and [Youtube](https://youtube.com/)
+
+          <h2>Revision Control</h2>
+
+          Excellent knowledge of version control systems: [TFS](http://msdn.microsoft.com/en-us/vstudio/ff637362.aspx), [SVN](http://en.wikipedia.org/wiki/Apache_Subversion), and [GIT](http://git-scm.com/) (preferred).
+
+          <h2>Environments</h2>
+
+          Experience running servers on both windows and *nix (preferred) platforms. Experience with [Apache](http://httpd.apache.org/) and [Nginx](http://nginx.org/) (preferred). Very good at [Cloud](https://medium.com/cool-code-pal/b8c5c0dc621c).
+
+      section.brands
+
+          h1 Brands
+
+          p Through my experiences with various agencies, organizations and individuals I've been fortunate to have worked with the following people:
+
+      section.more
+
+        :t(render="markdown")
+
+          <h1>More…</h1>
+
+          My name is Ricky Miller…
+
+          During the day my jam is making internet. When I'm not making internet, I'm either: eating, sleeping, cycling or playing videogames.
+
+          Lately my focus has been on creating expressive, dynamic experiences with things like [Node.js](http://nodejs.org/), <br /> [Three.js](http://threejs.org/) and [Socket.io](http://socket.io/).
+
+          You can usually find me being silly on [Twitter](https://twitter.com/rmill/), but you can also [email me](mailto:ricky.miller@gmail.com) or /msg <em>rmill</em> on freenode IRC (that's where all the [cool kids](https://github.com/ot-crew) hang out).
+
+          Here is my collection of random [images](http://rmill.ca/i/) (inspired by [@wilto](https://twitter.com/wilto/))
+
+          Later alligator,
+
+          ---,==,'<
+
+          <em>~R</em>
+
+          <strong>Email:</strong><br />
+          [ricky.miller@gmail.com](mailto:ricky.miller@gmail.com)
+
+          <strong>Phone:</strong><br />
+          613.618.8322
+
+        div.social
+          div.row
+            a(href="https://twitter.com/rmill"  class="icon" target="_blank")
+              span
+                &#xe286;
+              span
+                | Twotter
+            a(href="https://github.com/rmillr" class="icon" target="_blank")
+              span
+                &#xe237;
+              span
+                | GitHugs
+        p.fineprint
+          small
+            | Cobbled together with 
+            a(href="http://docpad.org/") DocPad
+            |  & 
+            a(href="http://threejs.org/") Three.js
+
+    .three
+    script(src="js/Three.js")
+    script(src="js/Tween.js")
+    script(src="js/RequestAnimationFrame.js")
+    script(src="js/all.min.js")

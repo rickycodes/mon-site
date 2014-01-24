@@ -1,0 +1,14 @@
+/* TEAM */
+    Design and front-end development: Ricky Miller
+    URL: http://rmill.ca
+    Twitter: @rmill
+
+
+/* THANKS */
+    Made possible by cool people like you.
+
+
+/* SITE */
+    Language: English
+    Doctype: HTML5
+    Software: Nginx, DocPad, Grunt, Node.js
