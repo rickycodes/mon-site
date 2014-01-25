@@ -76,6 +76,10 @@ var monSite = function() {
                 var from = 0; // body.scrollTop || win.scrollTop;
                 var to = dest.offsetTop;
 
+                console.log( dest );
+                console.log( from );
+                console.log( to );
+
                 (new TWEEN.Tween({
                     y: from
                 })).to({
@@ -83,7 +87,7 @@ var monSite = function() {
                 })
                 .easing( ease )
                 .onUpdate( function() {
-                    body.scrollTop = win.scrollTop = this.y;
+                    body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = this.y;
                 })
                 .start();
             });
