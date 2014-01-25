@@ -4,6 +4,7 @@ orange = #DE0028
 orange_tinted = #B0001B
 blue = #004060
 darkblue = #1C1E20
+lightblue = #6699CC
 
 border-radius(n)
 	-webkit-border-radius n
@@ -115,28 +116,32 @@ body
 
 a
 	color blue
-	text-decoration none
+	text-decoration underline
 
-.content .social
+.social
 	display table
 	margin 0 auto
 
-.content .social .row
+.social .row
 	display table-row
 
-.content .social .row a
+.social .row a
 	display table-cell
 	color orange
 	text-decoration none
+	transition 400ms
 
-.content .social .row a:first-child
+.social .row a:hover
+	color blue
+
+.social .row a:first-child
 	padding-right 40px
 
-.content .social .row a span
+.social .row a span
 	vertical-align middle
 	padding-left 8px
 
-.content .social .row a span:first-child
+.social .row a span:first-child
 	font-family Mono Social Icons Font
 	font-size 42px
 	padding-left 0
@@ -200,7 +205,6 @@ p
 	color #888
 
 .fineprint
-	color #888
 	margin 20px 0 0 0
 	text-align center
 	font-size 16px
@@ -284,6 +288,31 @@ h2
 	z-index 1
 	top 0
 
+.gallery
+	width 100%
+	margin 40px 0
+
+.gallery div
+	width: 33.33333333333333%;
+	float left
+	text-align center
+	
+	line-height 40px
+
+	padding 8px 14px
+
+.gallery:last-child:after
+	content ''
+	display block
+	clear both
+
+.gallery div img
+	width 100%
+	height auto
+
+	border 2px solid #EBEBEB
+	border-radius(4px)
+
 @media only screen and (max-width: 960px)
 	.banner .col
 		display none
@@ -303,3 +332,11 @@ h2
 
 	nav li
 		margin 4px 0 0 4px
+
+@media only screen and (max-width: 760px)
+	.gallery div
+		width 50%
+
+@media only screen and (max-width: 500px)
+	.gallery div
+		width 100%

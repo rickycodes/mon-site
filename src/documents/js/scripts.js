@@ -1,25 +1,21 @@
-var monSite = function () {
+var monSite = function() {
 
 	var startTime = Date.now(),
-        
-        current,
-        sections,
 
         doc = document,
         win = window,
+
+        red = 0xDE0028,
+        blue = 0x004060,
         
         body = doc.body,
         top,
         content,
         three,
 
-        animating = true,
-        throttle = false,
-
         group,
-        brands,
 
-        animSpeed = 600,
+        animSpeed = 1200,
         ease = TWEEN.Easing.Quadratic.Out,
         
         camera,
@@ -28,12 +24,14 @@ var monSite = function () {
 
         mouse = {},
 
-        html,
-
         scrolly;
 
+    function getRandNum( min, max ) {
+        return Math.floor( Math.random() * ( max - min + 1 ) + min );
+    }
+
     function getRandomHue() {
-        var hues = [ 0xDE0028, 0x004060 ];
+        var hues = [ red, blue ];
         return hues[ Math.floor( hues.length * Math.random() ) ];
     }
 
@@ -43,6 +41,16 @@ var monSite = function () {
 
     function getThreeHeight() {
         return Math.floor( top.offsetWidth / 2 ) * 2;
+    }
+
+    function getGeom() {
+        var size = getRandNum( 60, 120 );
+        var geom = [
+            new THREE.CubeGeometry( size, size, size ),
+            new THREE.SphereGeometry( getRandNum( 8, 20 ), 20, 20 )
+        ];
+        var index = Math.floor( geom.length * Math.random() );
+        return geom[ index ];
     }
 
     function render() {
@@ -57,7 +65,7 @@ var monSite = function () {
 
     function bindMainNav( e ) {
 
-        var links = doc.querySelectorAll("[data-to]");
+        var links = doc.querySelectorAll( '[data-to]' );
         for ( var i = 0; i < links.length; i++ ) {
 
             links[ i ].addEventListener( 'click', function( e ) {
@@ -65,7 +73,7 @@ var monSite = function () {
                 e.preventDefault();
 
                 var dest = doc.getElementsByClassName( this.getAttribute( 'data-to' ) )[ 0 ];
-                var from = body.scrollTop || win.scrollTop;
+                var from = 0; // body.scrollTop || win.scrollTop;
                 var to = dest.offsetTop;
 
                 (new TWEEN.Tween({
@@ -74,7 +82,7 @@ var monSite = function () {
                     y: to
                 })
                 .easing( ease )
-                .onUpdate( function () {
+                .onUpdate( function() {
                     body.scrollTop = win.scrollTop = this.y;
                 })
                 .start();
@@ -84,17 +92,15 @@ var monSite = function () {
 
     function init() {
 
-        var links = doc.querySelectorAll( "section a" );
+        var links = doc.querySelectorAll( 'section a' );
         for ( var i = 0; i < links.length; i++ ) {
-            links[ i ].setAttribute( "target", "_blank" );
+            links[ i ].setAttribute( 'target', '_blank' );
         }
 
-        sections = doc.querySelectorAll( "section" );
-        content = doc.getElementsByClassName( "content" )[ 0 ];
-        top = doc.getElementsByClassName( "top" )[ 0 ];
-        content.setAttribute( "style", "padding-top:" + getThreeWidht() + "px" );
-        html = doc.getElementsByTagName( "html" )[ 0 ];
-        three = doc.getElementsByClassName( "three" )[ 0 ];
+        content = doc.getElementsByClassName( 'content' )[ 0 ];
+        top = doc.getElementsByClassName( 'top' )[ 0 ];
+        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px' );
+        three = doc.getElementsByClassName( 'three' )[ 0 ];
         
         camera = new THREE.PerspectiveCamera( 75, getThreeHeight() / getThreeWidht(), 1, 2000 );
         camera.position.z = 1000;
@@ -104,25 +110,28 @@ var monSite = function () {
         group = new THREE.Object3D();
         brands = new THREE.Object3D();
 
-        var geometry = new THREE.CubeGeometry( 100, 100, 100 );
+        var geometry = new THREE.Geometry();
 
-        for( var i = 0; i < 20; i++ ) {
+        for( var i = 0; i < 80; i++ ) {
 
             var material = new THREE.MeshPhongMaterial( { color : getRandomHue() } );
-            var mesh = new THREE.Mesh( geometry, material );
+            var mesh = new THREE.Mesh( getGeom(), material );
 
-            mesh.position.x = Math.random() * 2000 - 1000;
-            mesh.position.y = Math.random() * 2000 - 1000;
-            mesh.position.z = Math.random() * 2000 - 1000;
+            mesh.position.x = Math.random() * 1200 - 600;
+            mesh.position.y = Math.random() * 1200 - 600;
+            mesh.position.z = Math.random() * 1200 - 600;
+
+            geometry.vertices.push( new THREE.Vector3( mesh.position.x, mesh.position.y, mesh.position.z ) );
 
             mesh.rotation.x = Math.random() * 2 * Math.PI;
             mesh.rotation.y = Math.random() * 2 * Math.PI;
-
-            mesh.matrixAutoUpdate = false;
-            mesh.updateMatrix();
+            mesh.rotation.z = Math.random() * 2 * Math.PI;
 
             group.add( mesh );
         }
+
+        var lineMaterial = new THREE.LineBasicMaterial( { color : blue } );
+        var line = new THREE.Line( geometry, lineMaterial );
         
         var light = new THREE.DirectionalLight( 0xffffff, 1.2 );
         
@@ -130,24 +139,26 @@ var monSite = function () {
         light.position.multiplyScalar( 1.3 );
         light.castShadow = light.shadowCameraVisible = true;
         
+        group.add( line );
+        
         scene.add( light );
         scene.add( group );
-        scene.add( brands);
 
         renderer = new THREE.WebGLRenderer( { alpha: true } );
 
         renderer.setSize( getThreeHeight(), getThreeWidht() );
         three.appendChild( renderer.domElement );
 
-        doc.addEventListener( "mousemove", mousemove, false );
-        win.addEventListener( "scroll", scroll, false );
-        win.addEventListener( "resize", resize, false );
+        doc.addEventListener( 'mousemove', mousemove, false );
+        win.addEventListener( 'scroll', scroll, false );
+        win.addEventListener( 'resize', resize, false );
 
         bindMainNav();
     }
 
     function mousemove( e ) {
         e.preventDefault();
+
         mouse.x = e.clientX / window.innerWidth * 2 - 1;
         mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
     }
@@ -156,15 +167,31 @@ var monSite = function () {
 
         // scrolly = this.scrollY;
 
-        camera.position.z += 0.02;
+        var scrollY = ( this.y || window.pageYOffset ) - window.pageYOffset;
 
-        group.rotation.x += 0.02;
-        group.rotation.y += 0.0226;
-        group.rotation.z += 0.0176;
+        this.y = window.pageYOffset;
+
+        var directionY = !scrollY ? 'NONE' : scrollY > 0 ? 'UP' : 'DOWN';
+
+        if( directionY === 'UP' ) {
+            camera.position.z += 0.02;
+            group.rotation.x += 0.02;
+            group.rotation.y += 0.0226;
+            group.rotation.z += 0.0176;
+            return;
+        }
+
+        if( directionY === 'DOWN' ) {
+            camera.position.z -= 0.02;
+            group.rotation.x -= 0.02;
+            group.rotation.y -= 0.0226;
+            group.rotation.z -= 0.0176;
+            return;
+        }
     }
 
     function resize() {
-        content.setAttribute( "style", "padding-top:" + getThreeWidht() + "px" );
+        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px' );
         
         camera.aspect = getThreeHeight() / getThreeWidht();
         camera.updateProjectionMatrix();
@@ -172,8 +199,6 @@ var monSite = function () {
         renderer.setSize( getThreeHeight(), getThreeWidht() );
     }
 
-    (function() {
-        init();
-        animate();
-    })();
+    init();
+    animate();
 }();
