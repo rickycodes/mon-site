@@ -99,7 +99,7 @@ var monSite = function() {
 
         content = doc.getElementsByClassName( 'content' )[ 0 ];
         top = doc.getElementsByClassName( 'top' )[ 0 ];
-        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px' );
+        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px; visibility: visible !important;' );
         three = doc.getElementsByClassName( 'three' )[ 0 ];
         
         camera = new THREE.PerspectiveCamera( 75, getThreeHeight() / getThreeWidht(), 1, 2000 );
@@ -191,7 +191,7 @@ var monSite = function() {
     }
 
     function resize() {
-        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px' );
+        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px; visibility: visible !important;' );
         
         camera.aspect = getThreeHeight() / getThreeWidht();
         camera.updateProjectionMatrix();
