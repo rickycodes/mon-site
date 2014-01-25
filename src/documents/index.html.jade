@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="en" prefix="og:http://ogp.me/ns#")
   head
     title="Ricky Miller"
     meta(charset="utf-8")
@@ -10,11 +10,11 @@ html(lang="en")
 
     meta(property="og:title" content="rmill")
     meta(property="og:type" content="website")
-    meta(property="og:image" content="http://rmill.ca/assets/icon.png")
+    meta(property="og:image" content="http://rmill.ca/assets/icon.jpg")
     meta(property="og:url" content="http://rmill.ca/")
     meta(property="og:site_name" content="rmill")
-
-    // meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+    meta(property="og:description" content="Ricky Miller is an interactive designer/developer creating expressive, dynamic experiences for digital platforms.")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
 
     link(href="css/style.min.css" rel="stylesheet")
     link(href="favicon.ico" rel="shortcut icon" type="image/x-icon")
@@ -94,23 +94,23 @@ html(lang="en")
 
           div(class="gallery")
             div
-              img(src="/assets/ae.png")
+              img(src="assets/ae.png")
             div
-              img(src="/assets/bb.png")
+              img(src="assets/bb.png")
             div
-              img(src="/assets/cbc.png")
+              img(src="assets/cbc.png")
             div
-              img(src="/assets/ct.png")
+              img(src="assets/ct.png")
             div
-              img(src="/assets/marks.png")
+              img(src="assets/marks.png")
             div
-              img(src="/assets/sd.png")
+              img(src="assets/sd.png")
             div
-              img(src="/assets/slf.png")
+              img(src="assets/slf.png")
             div
-              img(src="/assets/telus.png")
+              img(src="assets/telus.png")
             div
-              img(src="/assets/uw.png")
+              img(src="assets/uw.png")
 
       section.more
 
@@ -136,9 +136,6 @@ html(lang="en")
 
           <strong>Email:</strong><br />
           [ricky.miller@gmail.com](mailto:ricky.miller@gmail.com)
-
-          <strong>Phone:</strong><br />
-          613.618.8322
 
         div.social
           div.row
