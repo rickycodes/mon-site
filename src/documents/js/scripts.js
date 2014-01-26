@@ -13,6 +13,8 @@ var monSite = function() {
         content,
         three,
 
+        webGLEnabled = checkWebGL(),
+
         group,
 
         animSpeed = 1200,
@@ -25,6 +27,32 @@ var monSite = function() {
         mouse = {},
 
         scrolly;
+
+    function checkWebGL() {
+        for ( var a = [ 'webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d'], c = [], b = false, d = false, e = false, f = 0; 4 > f; f++ ) {
+            d = !1;
+            try {
+                if ( d = document.createElement( 'canvas' ).getContext( a[ f ], {
+                    stencil: true
+                } ) ) b || ( b = d ), c.push( a[ f ] )
+            } catch ( g ) {}
+        }
+        
+        if ( !b && eval( '/*@cc_on!@*/false' ) ) {
+            var object = doc.createElement( 'object' );
+                object.setAttribute( 'type', 'application/x-webgl' );
+                object.setAttribute( 'id', 'glCanvas' );
+            try {
+                b = doc.getElementById( 'glCanvas' ).getContext( 'webgl' ), c.push( 'webgl' ), e = true;
+            } catch ( h ) {}
+        }
+        
+        return b ? {
+            name: c,
+            gl: b,
+            isModule: e
+        } : false
+    };
 
     function getRandNum( min, max ) {
         return Math.floor( Math.random() * ( max - min + 1 ) + min );
@@ -60,11 +88,19 @@ var monSite = function() {
     function animate() {
         requestAnimationFrame( animate );
         TWEEN.update();
-        render();
+        if( webGLEnabled ) {
+            render();
+        }
+    }
+
+    function bindExternalLinks() {
+        var links = doc.querySelectorAll( 'section a' );
+        for ( var i = 0; i < links.length; i++ ) {
+            links[ i ].setAttribute( 'target', '_blank' );
+        }
     }
 
     function bindMainNav( e ) {
-
         var links = doc.querySelectorAll( '[data-to]' );
         for ( var i = 0; i < links.length; i++ ) {
 
@@ -83,7 +119,7 @@ var monSite = function() {
                 })
                 .easing( ease )
                 .onUpdate( function() {
-                    body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = this.y;
+                    body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor( this.y );
                 })
                 .start();
             });
@@ -91,12 +127,6 @@ var monSite = function() {
     }
 
     function init() {
-
-        var links = doc.querySelectorAll( 'section a' );
-        for ( var i = 0; i < links.length; i++ ) {
-            links[ i ].setAttribute( 'target', '_blank' );
-        }
-
         content = doc.getElementsByClassName( 'content' )[ 0 ];
         top = doc.getElementsByClassName( 'top' )[ 0 ];
         content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px; visibility: visible !important;' );
@@ -144,16 +174,14 @@ var monSite = function() {
         scene.add( light );
         scene.add( group );
 
+        
         renderer = new THREE.WebGLRenderer( { alpha: true } );
-
         renderer.setSize( getThreeHeight(), getThreeWidht() );
         three.appendChild( renderer.domElement );
 
         doc.addEventListener( 'mousemove', mousemove, false );
         win.addEventListener( 'scroll', scroll, false );
         win.addEventListener( 'resize', resize, false );
-
-        bindMainNav();
     }
 
     function mousemove( e ) {
@@ -195,10 +223,17 @@ var monSite = function() {
         
         camera.aspect = getThreeHeight() / getThreeWidht();
         camera.updateProjectionMatrix();
-        
         renderer.setSize( getThreeHeight(), getThreeWidht() );
     }
 
-    init();
+    if( webGLEnabled ) {
+        init();
+    } else {
+        content = doc.getElementsByClassName( 'content' )[ 0 ];
+        content.setAttribute( 'style', 'padding-top:' + 400 + 'px; visibility: visible !important;' );
+    }
+
     animate();
+    bindMainNav();
+    bindExternalLinks();
 }();
