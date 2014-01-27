@@ -13,7 +13,7 @@ var monSite = function() {
         content,
         three,
 
-        webGLEnabled = checkWebGL(),
+        webGLEnabled,
 
         group,
 
@@ -30,11 +30,12 @@ var monSite = function() {
 
     function checkWebGL() {
         for ( var a = [ 'webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d'], c = [], b = false, d = false, e = false, f = 0; 4 > f; f++ ) {
-            d = !1;
+            d = false;
             try {
-                if ( d = document.createElement( 'canvas' ).getContext( a[ f ], {
+                d = document.createElement( 'canvas' ).getContext( a[ f ], {
                     stencil: true
-                } ) ) b || ( b = d ), c.push( a[ f ] )
+                });
+                if ( d ) b || ( b = d ), c.push( a[ f ] );
             } catch ( g ) {}
         }
         
@@ -51,8 +52,8 @@ var monSite = function() {
             name: c,
             gl: b,
             isModule: e
-        } : false
-    };
+        } : false;
+    }
 
     function getRandNum( min, max ) {
         return Math.floor( Math.random() * ( max - min + 1 ) + min );
@@ -138,7 +139,6 @@ var monSite = function() {
         scene = new THREE.Scene();
 
         group = new THREE.Object3D();
-        brands = new THREE.Object3D();
 
         var geometry = new THREE.Geometry();
 
@@ -226,14 +226,18 @@ var monSite = function() {
         renderer.setSize( getThreeHeight(), getThreeWidht() );
     }
 
-    if( webGLEnabled ) {
-        init();
-    } else {
-        content = doc.getElementsByClassName( 'content' )[ 0 ];
-        content.setAttribute( 'style', 'padding-top:' + 400 + 'px; visibility: visible !important;' );
-    }
+    (function() {
+        webGLEnabled = checkWebGL();
 
-    animate();
-    bindMainNav();
-    bindExternalLinks();
+        if( webGLEnabled ) {
+            init();
+        } else {
+            content = doc.getElementsByClassName( 'content' )[ 0 ];
+            content.setAttribute( 'style', 'padding-top:' + 400 + 'px; visibility: visible !important;' );
+        }
+
+        animate();
+        bindMainNav();
+        bindExternalLinks();
+    })();
 }();
