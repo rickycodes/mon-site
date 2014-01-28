@@ -64,7 +64,7 @@ var monSite = function() {
         return hues[ Math.floor( hues.length * Math.random() ) ];
     }
 
-    function getThreeWidht() {
+    function getThreeWidth() {
         return win.innerHeight < 956 ? win.innerHeight : 956;
     }
 
@@ -130,7 +130,7 @@ var monSite = function() {
     function init() {
         content = doc.getElementsByClassName( 'content' )[ 0 ];
         top = doc.getElementsByClassName( 'top' )[ 0 ];
-        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px; visibility: visible !important;' );
+        content.setAttribute( 'style', 'padding-top:' + getThreeWidth() + 'px; visibility: visible !important;' );
         three = doc.getElementsByClassName( 'three' )[ 0 ];
 
         var sections = doc.getElementsByTagName( 'section' );
@@ -138,7 +138,7 @@ var monSite = function() {
             sections[ i ].setAttribute( 'style', 'margin-bottom: 1000px !important;' );
         }
         
-        camera = new THREE.PerspectiveCamera( 75, getThreeHeight() / getThreeWidht(), 1, 2000 );
+        camera = new THREE.PerspectiveCamera( 75, getThreeHeight() / getThreeWidth(), 1, 2000 );
         camera.position.z = 1000;
 
         scene = new THREE.Scene();
@@ -181,7 +181,7 @@ var monSite = function() {
 
         
         renderer = new THREE.WebGLRenderer( { alpha: true } );
-        renderer.setSize( getThreeHeight(), getThreeWidht() );
+        renderer.setSize( getThreeHeight(), getThreeWidth() );
         three.appendChild( renderer.domElement );
 
         doc.addEventListener( 'mousemove', mousemove, false );
@@ -224,11 +224,11 @@ var monSite = function() {
     }
 
     function resize() {
-        content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px; visibility: visible !important;' );
+        content.setAttribute( 'style', 'padding-top:' + getThreeWidth() + 'px; visibility: visible !important;' );
         
-        camera.aspect = getThreeHeight() / getThreeWidht();
+        camera.aspect = getThreeHeight() / getThreeWidth();
         camera.updateProjectionMatrix();
-        renderer.setSize( getThreeHeight(), getThreeWidht() );
+        renderer.setSize( getThreeHeight(), getThreeWidth() );
     }
 
     (function() {
