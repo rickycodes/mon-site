@@ -29,7 +29,7 @@ var monSite = function() {
         scrolly;
 
     function checkWebGL() {
-        for ( var a = [ 'webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d'], c = [], b = false, d = false, e = false, f = 0; 4 > f; f++ ) {
+        for ( var a = [ 'webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d' ], c = [], b = false, d = false, e = false, f = 0; 4 > f; f++ ) {
             d = false;
             try {
                 d = document.createElement( 'canvas' ).getContext( a[ f ], {
@@ -39,7 +39,7 @@ var monSite = function() {
             } catch ( g ) {}
         }
         
-        if ( !b && eval( '/*@cc_on!@*/false' ) ) {
+        if ( !b && eval( '/*@cc_on!@*/false' ) ) { // this is ___SO___ gross!
             var object = doc.createElement( 'object' );
                 object.setAttribute( 'type', 'application/x-webgl' );
                 object.setAttribute( 'id', 'glCanvas' );
@@ -132,6 +132,11 @@ var monSite = function() {
         top = doc.getElementsByClassName( 'top' )[ 0 ];
         content.setAttribute( 'style', 'padding-top:' + getThreeWidht() + 'px; visibility: visible !important;' );
         three = doc.getElementsByClassName( 'three' )[ 0 ];
+
+        var sections = doc.getElementsByTagName( 'section' );
+        for( var i = 0; i < sections.length; i++ ) {
+            sections[ i ].setAttribute( 'style', 'margin-bottom: 1000px !important;' );
+        }
         
         camera = new THREE.PerspectiveCamera( 75, getThreeHeight() / getThreeWidht(), 1, 2000 );
         camera.position.z = 1000;
@@ -233,7 +238,7 @@ var monSite = function() {
             init();
         } else {
             content = doc.getElementsByClassName( 'content' )[ 0 ];
-            content.setAttribute( 'style', 'padding-top:' + 400 + 'px; visibility: visible !important;' );
+            content.setAttribute( 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;' );
         }
 
         animate();
