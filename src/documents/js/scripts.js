@@ -87,6 +87,17 @@ var monSite = function() {
     }
 
     function animate() {
+        
+        var len = group.children.length;
+        for ( var i = 0; i < len; i++ ) {
+            
+            if( i !== len - 1 ) {
+                group.children[ i ].rotation.x += 0.002;
+                group.children[ i ].rotation.y += 0.003;
+                group.children[ i ].rotation.z += 0.001;
+            }
+        }
+
         requestAnimationFrame( animate );
         TWEEN.update();
         if( webGLEnabled ) {
@@ -178,8 +189,7 @@ var monSite = function() {
         
         scene.add( light );
         scene.add( group );
-
-        
+            
         renderer = new THREE.WebGLRenderer( { alpha: true } );
         renderer.setSize( getThreeHeight(), getThreeWidth() );
         three.appendChild( renderer.domElement );
