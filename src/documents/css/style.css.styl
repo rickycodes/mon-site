@@ -1,10 +1,9 @@
 @import 'nib'
 
-orange = #DE0028
-orange_tinted = #B0001B
-blue = #004060
-darkblue = #1C1E20
-lightblue = #6699CC
+primary = #ff00ff
+primary_tinted = #cc00cc
+secondary = #606
+secondary_tinted = #990099
 
 border-radius(n)
 	-webkit-border-radius n
@@ -115,7 +114,7 @@ body
 	overflow-x hidden
 
 a
-	color blue
+	color secondary
 	text-decoration underline
 
 .social
@@ -127,12 +126,12 @@ a
 
 .social .row a
 	display table-cell
-	color orange
+	color primary
 	text-decoration none
 	transition 400ms
 
 .social .row a:hover
-	color blue
+	color secondary
 
 .social .row a:first-child
 	padding-right 40px
@@ -157,7 +156,7 @@ a
 	width 100%
 	max-width 960px
 	margin 0 auto
-	color blue
+	color secondary
 
 .banner .me
 	font-size 20px
@@ -216,7 +215,7 @@ p
 	transition 400ms
 
 .content a:hover
-	color orange
+	color primary
 
 section
 	padding 0 70px 40px 70px
@@ -234,7 +233,7 @@ h1
 	font-size 32px
 	text-transform uppercase
 	letter-spacing 0.08em
-	color orange
+	color primary
 	display inline-block
 	background white
 
@@ -243,7 +242,7 @@ h2
 	font-size 16px
 	text-transform uppercase
 	letter-spacing 0.08em
-	color #336680
+	color secondary
 	margin-bottom 0
 
 .roll
@@ -251,7 +250,7 @@ h2
 	line-height 1.2
 	overflow hidden
 	vertical-align top
-	background orange_tinted
+	background primary_tinted
 	perspective 400px
 	perspective-origin 50%,50%
 
@@ -260,7 +259,7 @@ h2
 	position relative
 	padding 8px 24px
 	pointer-events none
-	background orange
+	background primary
 	transition 400ms
 	transform-origin 50%,0%
 	transform-style preserve-3d
@@ -273,7 +272,7 @@ h2
 	left 0
 	top 0
 	padding 8px 24px
-	background orange_tinted
+	background primary_tinted
 	backface-visibility hidden
 	transform-origin 50%,0%
 	translate 0px,110%,0px,-90deg
@@ -282,7 +281,7 @@ h2
 	translate 0px,0px,-45px,90deg
 
 .three
-	background radial-gradient(center, circle cover, #004060 0%, darkblue 100%)
+	background radial-gradient(center, circle cover, #01ffe5 0%, secondary_tinted 100%)
 	width 100%
 	height 100%
 	position fixed
@@ -316,7 +315,7 @@ h2
 
 img.me
 	display block
-	width 42%
+	width 24%
 	float left
 	margin 0 30px 30px 0
 

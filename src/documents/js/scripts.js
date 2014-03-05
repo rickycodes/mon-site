@@ -5,8 +5,8 @@ var monSite = function() {
         doc = document,
         win = window,
 
-        red = 0xDE0028,
-        blue = 0x004060,
+        purple = 0xff01ff,
+        blue = 0x22ffff,
         
         body = doc.body,
         top,
@@ -60,7 +60,7 @@ var monSite = function() {
     }
 
     function getRandomHue() {
-        var hues = [ red, blue ];
+        var hues = [ purple, blue ];
         return hues[ Math.floor( hues.length * Math.random() ) ];
     }
 
@@ -141,7 +141,7 @@ var monSite = function() {
     function init() {
         content = doc.getElementsByClassName( 'content' )[ 0 ];
         top = doc.getElementsByClassName( 'top' )[ 0 ];
-        content.setAttribute( 'style', 'padding-top:' + getThreeWidth() + 'px; visibility: visible !important;' );
+        content.setAttribute( 'style', 'padding-top:' + getThreeHeight() + 'px; visibility: visible !important;' );
         three = doc.getElementsByClassName( 'three' )[ 0 ];
 
         var sections = doc.getElementsByTagName( 'section' );
@@ -191,7 +191,7 @@ var monSite = function() {
         scene.add( group );
             
         renderer = new THREE.WebGLRenderer( { alpha: true } );
-        renderer.setSize( getThreeHeight(), getThreeWidth() );
+        renderer.setSize( window.innerWidth, window.innerHeight );
         three.appendChild( renderer.domElement );
 
         doc.addEventListener( 'mousemove', mousemove, false );
@@ -234,7 +234,7 @@ var monSite = function() {
     }
 
     function resize() {
-        content.setAttribute( 'style', 'padding-top:' + getThreeWidth() + 'px; visibility: visible !important;' );
+        content.setAttribute( 'style', 'padding-top:' + getThreeHeight() + 'px; visibility: visible !important;' );
         
         camera.aspect = getThreeHeight() / getThreeWidth();
         camera.updateProjectionMatrix();
