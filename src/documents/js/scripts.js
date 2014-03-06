@@ -236,9 +236,9 @@ var monSite = function() {
     function resize() {
         content.setAttribute( 'style', 'padding-top:' + getThreeHeight() + 'px; visibility: visible !important;' );
         
-        camera.aspect = getThreeHeight() / getThreeWidth();
+        camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize( getThreeHeight(), getThreeWidth() );
+        renderer.setSize( window.innerWidth, window.innerHeight );
     }
 
     (function() {
