@@ -64,14 +64,6 @@ var monSite = function() {
         return hues[ Math.floor( hues.length * Math.random() ) ];
     }
 
-    function getThreeWidth() {
-        return win.innerHeight < 956 ? win.innerHeight : 956;
-    }
-
-    function getThreeHeight() {
-        return Math.floor( top.offsetWidth / 2 ) * 2;
-    }
-
     function getGeom() {
         var size = getRandNum( 60, 120 );
         var geom = [
@@ -141,7 +133,7 @@ var monSite = function() {
     function init() {
         content = doc.getElementsByClassName( 'content' )[ 0 ];
         top = doc.getElementsByClassName( 'top' )[ 0 ];
-        content.setAttribute( 'style', 'padding-top:' + getThreeHeight() + 'px; visibility: visible !important;' );
+        content.setAttribute( 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;' );
         three = doc.getElementsByClassName( 'three' )[ 0 ];
 
         var sections = doc.getElementsByTagName( 'section' );
@@ -149,7 +141,7 @@ var monSite = function() {
             sections[ i ].setAttribute( 'style', 'margin-bottom: 1000px !important;' );
         }
         
-        camera = new THREE.PerspectiveCamera( 75, getThreeHeight() / getThreeWidth(), 1, 2000 );
+        camera = new THREE.PerspectiveCamera( 75, win.innerWidth / win.innerHeight, 1, 2000 );
         camera.position.z = 1000;
 
         scene = new THREE.Scene();
@@ -191,7 +183,7 @@ var monSite = function() {
         scene.add( group );
             
         renderer = new THREE.WebGLRenderer( { alpha: true } );
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.setSize( win.innerWidth, win.innerHeight );
         three.appendChild( renderer.domElement );
 
         doc.addEventListener( 'mousemove', mousemove, false );
@@ -202,8 +194,8 @@ var monSite = function() {
     function mousemove( e ) {
         e.preventDefault();
 
-        mouse.x = e.clientX / window.innerWidth * 2 - 1;
-        mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+        mouse.x = e.clientX / win.innerWidth * 2 - 1;
+        mouse.y = - ( e.clientY / win.innerHeight ) * 2 + 1;
     }
 
     function scroll( e ) {
@@ -234,7 +226,7 @@ var monSite = function() {
     }
 
     function resize() {
-        content.setAttribute( 'style', 'padding-top:' + getThreeHeight() + 'px; visibility: visible !important;' );
+        content.setAttribute( 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;' );
         
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
