@@ -1,32 +1,33 @@
-var monSite = function() {
+require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
+  var monSite = function() {
 
-	var startTime = Date.now(),
+    var startTime = Date.now(),
 
-        doc = document,
-        win = window,
+      doc = document,
+      win = window,
 
-        purple = 0xff01ff,
-        blue = 0x22ffff,
-        
-        body = doc.body,
-        top,
-        content,
-        three,
+      purple = 0xff01ff,
+      blue = 0x22ffff,
+      
+      body = doc.body,
+      top,
+      content,
+      three,
 
-        webGLEnabled,
+      webGLEnabled,
 
-        group,
+      group,
 
-        animSpeed = 1200,
-        ease = TWEEN.Easing.Quadratic.Out,
-        
-        camera,
-        scene,
-        renderer,
+      animSpeed = 1200,
+      ease = TWEEN.Easing.Quadratic.Out,
+      
+      camera,
+      scene,
+      renderer,
 
-        mouse = {},
+      mouse = {},
 
-        scrolly;
+      scrolly;
 
     function checkWebGL() {
         for ( var a = [ 'webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d' ], c = [], b = false, d = false, e = false, f = 0; 4 > f; f++ ) {
@@ -247,4 +248,5 @@ var monSite = function() {
         bindMainNav();
         bindExternalLinks();
     })();
-}();
+  }();
+});

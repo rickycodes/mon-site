@@ -1,8 +1,8 @@
 {
   "min": {
     "js": {
-      "src": [ "out/js/scripts.js" ],
-      "dest": "out/js/all.min.js"
+      "src": [ "out/js/main.js" ],
+      "dest": "out/js/main.min.js"
     }
   },
   "concat": {
