@@ -280,13 +280,20 @@ h2
 .roll:hover span
 	translate 0px,0px,-45px,90deg
 
-.three
+.wrap
 	background radial-gradient(center, circle cover, #01ffe5 0%, secondary_tinted 100%)
 	width 100%
 	height 100%
 	position fixed
 	z-index 1
 	top 0
+
+.three
+	opacity 0
+	transition 800ms
+
+.three.visible
+	opacity 1
 
 .gallery
 	width 100%

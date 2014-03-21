@@ -185,6 +185,7 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
             
         renderer = new THREE.WebGLRenderer( { alpha: true } );
         renderer.setSize( win.innerWidth, win.innerHeight );
+        three.setAttribute( 'class', 'three visible' );
         three.appendChild( renderer.domElement );
 
         doc.addEventListener( 'mousemove', mousemove, false );
