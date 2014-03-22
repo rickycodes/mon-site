@@ -135,7 +135,9 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
         content = doc.getElementsByClassName( 'content' )[ 0 ];
         top = doc.getElementsByClassName( 'top' )[ 0 ];
         content.setAttribute( 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;' );
+        
         three = doc.getElementsByClassName( 'three' )[ 0 ];
+        loading = doc.getElementsByClassName( 'loading' )[ 0 ];
 
         var sections = doc.getElementsByTagName( 'section' );
         for( var i = 0; i < sections.length; i++ ) {
@@ -187,6 +189,8 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
         renderer.setSize( win.innerWidth, win.innerHeight );
         three.setAttribute( 'class', 'three visible' );
         three.appendChild( renderer.domElement );
+
+        loading.parentElement.removeChild( loading );
 
         doc.addEventListener( 'mousemove', mousemove, false );
         win.addEventListener( 'scroll', scroll, false );
