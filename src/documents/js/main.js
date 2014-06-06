@@ -1,6 +1,9 @@
 require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
   var monSite = function() {
 
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    window.URL = window.URL || window.webkitURL;
+
     var startTime = Date.now(),
 
       doc = document,
@@ -8,7 +11,7 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
 
       purple = 0xff01ff,
       blue = 0x22ffff,
-      
+
       body = doc.body,
       top,
       content,
@@ -20,14 +23,22 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
 
       animSpeed = 1200,
       ease = TWEEN.Easing.Quadratic.Out,
-      
+
       camera,
       scene,
       renderer,
 
       mouse = {},
 
+      loading = doc.getElementsByClassName( 'loading' )[ 0 ],
+
+      video, image = false, imageContext, texture,
+
       scrolly;
+
+    function erlor(err) {
+        console.log( err || 'Y U NO HAVE?' );
+    }
 
     function checkWebGL() {
         for ( var a = [ 'webgl', 'experimental-webgl', 'moz-webgl', 'webkit-3d' ], c = [], b = false, d = false, e = false, f = 0; 4 > f; f++ ) {
@@ -39,7 +50,7 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
                 if ( d ) b || ( b = d ), c.push( a[ f ] );
             } catch ( g ) {}
         }
-        
+
         if ( !b && eval( '/*@cc_on!@*/false' ) ) { // this is ___SO___ gross!
             var object = doc.createElement( 'object' );
                 object.setAttribute( 'type', 'application/x-webgl' );
@@ -48,7 +59,7 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
                 b = doc.getElementById( 'glCanvas' ).getContext( 'webgl' ), c.push( 'webgl' ), e = true;
             } catch ( h ) {}
         }
-        
+
         return b ? {
             name: c,
             gl: b,
@@ -76,14 +87,22 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
     }
 
     function render() {
+
+        if( image ) {
+            if( video.readyState === video.HAVE_ENOUGH_DATA ) {
+                imageContext.drawImage( video, 0, 0 );
+                if ( texture ) texture.needsUpdate = true;
+            }
+        }
+
         renderer.render( scene, camera );
     }
 
     function animate() {
-        
+
         var len = group.children.length;
         for ( var i = 0; i < len; i++ ) {
-            
+
             if( i !== len - 1 ) {
                 group.children[ i ].rotation.x += 0.002;
                 group.children[ i ].rotation.y += 0.003;
@@ -110,7 +129,7 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
         for ( var i = 0; i < links.length; i++ ) {
 
             links[ i ].addEventListener( 'click', function( e ) {
-                
+
                 e.preventDefault();
 
                 var dest = doc.getElementsByClassName( this.getAttribute( 'data-to' ) )[ 0 ];
@@ -132,69 +151,101 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
     }
 
     function init() {
-        content = doc.getElementsByClassName( 'content' )[ 0 ];
-        top = doc.getElementsByClassName( 'top' )[ 0 ];
-        content.setAttribute( 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;' );
-        
-        three = doc.getElementsByClassName( 'three' )[ 0 ];
-        loading = doc.getElementsByClassName( 'loading' )[ 0 ];
 
-        var sections = doc.getElementsByTagName( 'section' );
-        for( var i = 0; i < sections.length; i++ ) {
-            sections[ i ].setAttribute( 'style', 'margin-bottom: 1000px !important;' );
+        if( !navigator.getUserMedia ) {
+            erlor();
+        } else {
+            navigator.getUserMedia({
+                video: true
+            }, function(stream) {
+
+                video = document.createElement('video');
+                video.autoplay = true;
+                video.src = (window.URL) ? window.URL.createObjectURL(stream) : stream;
+
+                image = document.createElement( 'canvas' );
+                image.width = 480;
+                image.height = 204;
+
+                imageContext = image.getContext( '2d' );
+                imageContext.fillStyle = '#000000';
+                imageContext.fillRect( 0, 0, 480, 204 );
+
+                texture = new THREE.Texture( image );
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
+
+                content = doc.getElementsByClassName( 'content' )[ 0 ];
+                top = doc.getElementsByClassName( 'top' )[ 0 ];
+                content.setAttribute( 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;' );
+
+                three = doc.getElementsByClassName( 'three' )[ 0 ];
+
+                var sections = doc.getElementsByTagName( 'section' );
+                for( var i = 0; i < sections.length; i++ ) {
+                    sections[ i ].setAttribute( 'style', 'margin-bottom: 1000px !important;' );
+                }
+
+                camera = new THREE.PerspectiveCamera( 75, win.innerWidth / win.innerHeight, 1, 2000 );
+                camera.position.z = 1000;
+
+                scene = new THREE.Scene();
+
+                group = new THREE.Object3D();
+
+                var geometry = new THREE.Geometry();
+
+                console.log( texture );
+
+                for( var i = 0; i < 80; i++ ) {
+
+                    // var material = new THREE.MeshPhongMaterial( { color : getRandomHue() } );
+
+                    var material = new THREE.MeshBasicMaterial( { map: texture, overdraw: 0.5 } );
+                    var mesh = new THREE.Mesh( getGeom(), material );
+
+                    mesh.position.x = Math.random() * 1200 - 600;
+                    mesh.position.y = Math.random() * 1200 - 600;
+                    mesh.position.z = Math.random() * 1200 - 600;
+
+                    geometry.vertices.push( new THREE.Vector3( mesh.position.x, mesh.position.y, mesh.position.z ) );
+
+                    mesh.rotation.x = Math.random() * 2 * Math.PI;
+                    mesh.rotation.y = Math.random() * 2 * Math.PI;
+                    mesh.rotation.z = Math.random() * 2 * Math.PI;
+
+                    group.add( mesh );
+                }
+
+                var lineMaterial = new THREE.LineBasicMaterial( { color : blue } );
+                var line = new THREE.Line( geometry, lineMaterial );
+
+                var light = new THREE.DirectionalLight( 0xffffff, 1.2 );
+
+                light.position.fromArray( [ 0, 0, 1000 ] );
+                light.position.multiplyScalar( 1.3 );
+                light.castShadow = light.shadowCameraVisible = true;
+
+                group.add( line );
+
+                scene.add( light );
+                scene.add( group );
+
+                renderer = new THREE.WebGLRenderer( { alpha: true } );
+                renderer.setSize( win.innerWidth, win.innerHeight );
+                three.setAttribute( 'class', 'three visible' );
+                three.appendChild( renderer.domElement );
+
+                loading.parentElement.removeChild( loading );
+
+                doc.addEventListener( 'mousemove', mousemove, false );
+                win.addEventListener( 'scroll', scroll, false );
+                win.addEventListener( 'resize', resize, false );
+
+                animate();
+
+            }, erlor);
         }
-        
-        camera = new THREE.PerspectiveCamera( 75, win.innerWidth / win.innerHeight, 1, 2000 );
-        camera.position.z = 1000;
-
-        scene = new THREE.Scene();
-
-        group = new THREE.Object3D();
-
-        var geometry = new THREE.Geometry();
-
-        for( var i = 0; i < 80; i++ ) {
-
-            var material = new THREE.MeshPhongMaterial( { color : getRandomHue() } );
-            var mesh = new THREE.Mesh( getGeom(), material );
-
-            mesh.position.x = Math.random() * 1200 - 600;
-            mesh.position.y = Math.random() * 1200 - 600;
-            mesh.position.z = Math.random() * 1200 - 600;
-
-            geometry.vertices.push( new THREE.Vector3( mesh.position.x, mesh.position.y, mesh.position.z ) );
-
-            mesh.rotation.x = Math.random() * 2 * Math.PI;
-            mesh.rotation.y = Math.random() * 2 * Math.PI;
-            mesh.rotation.z = Math.random() * 2 * Math.PI;
-
-            group.add( mesh );
-        }
-
-        var lineMaterial = new THREE.LineBasicMaterial( { color : blue } );
-        var line = new THREE.Line( geometry, lineMaterial );
-        
-        var light = new THREE.DirectionalLight( 0xffffff, 1.2 );
-        
-        light.position.fromArray( [ 0, 0, 1000 ] );
-        light.position.multiplyScalar( 1.3 );
-        light.castShadow = light.shadowCameraVisible = true;
-        
-        group.add( line );
-        
-        scene.add( light );
-        scene.add( group );
-            
-        renderer = new THREE.WebGLRenderer( { alpha: true } );
-        renderer.setSize( win.innerWidth, win.innerHeight );
-        three.setAttribute( 'class', 'three visible' );
-        three.appendChild( renderer.domElement );
-
-        loading.parentElement.removeChild( loading );
-
-        doc.addEventListener( 'mousemove', mousemove, false );
-        win.addEventListener( 'scroll', scroll, false );
-        win.addEventListener( 'resize', resize, false );
     }
 
     function mousemove( e ) {
@@ -233,7 +284,7 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
 
     function resize() {
         content.setAttribute( 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;' );
-        
+
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize( window.innerWidth, window.innerHeight );
@@ -244,12 +295,13 @@ require([ 'Three', 'Tween', 'RequestAnimationFrame' ], function() {
 
         if( webGLEnabled ) {
             init();
+            // animate();
         } else {
             content = doc.getElementsByClassName( 'content' )[ 0 ];
             content.setAttribute( 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;' );
+            loading.parentElement.removeChild( loading );
         }
 
-        animate();
         bindMainNav();
         bindExternalLinks();
     })();

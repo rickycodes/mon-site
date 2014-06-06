@@ -1,3 +1,44 @@
+@font-face {
+  font-family: 'Mono Social Icons Font';
+  src: url('../fonts/MonoSocialIconsFont-1.10.eot');
+  src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'), url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'), url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'), url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+  src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url("../fonts/apercu_regular-webfont.eot");
+  src: url("../fonts/apercu_regular-webfont.eot?#iefix")format("embedded-opentype"), url("../fonts/apercu_regular-webfont.woff") format("woff"), url("../fonts/apercu_regular-webfont.ttf") format("truetype"), url("../fonts/apercu_regular-webfont.svg#ApercuRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ApercuMono';
+  src: url("../fonts/apercu_mono-webfont.eot");
+  src: url("../fonts/apercu_mono-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_mono-webfont.woff") format("woff"), url("../fonts/apercu_mono-webfont.ttf") format("truetype"), url("../fonts/apercu_mono-webfont.svg#ApercuMono") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url("../fonts/apercu_medium_italic-webfont.eot");
+  src: url("../fonts/apercu_medium_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_medium_italic-webfont.woff") format("woff"), url("../fonts/apercu_medium_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_medium_italic-webfont.svg#ApercuMediumItalic") format("svg");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url("../fonts/apercu_bold_italic-webfont.eot");
+  src: url("../fonts/apercu_bold_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_bold_italic-webfont.woff") format("woff"), url("../fonts/apercu_bold_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_bold_italic-webfont.svg#ApercuBoldItalic") format("svg");
+  font-weight: bold;
+  font-style: italic;
+}
+
 @import 'nib'
 
 primary = #ff00ff
@@ -50,51 +91,6 @@ translate(x,y,z,r)
 	-moz-transform translate3d(x,y,z) rotateX(r)
 	-ms-transform translate3d(x,y,z) rotateX(r)
 	transform translate3d(x,y,z) rotateX(r)
-
-// Janky font-face, couldn't sort out how to make a clean mixin :'(
-
-@font-face {
-  font-family: 'Mono Social Icons Font';
-  src: url('../fonts/MonoSocialIconsFont-1.10.eot');
-  src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'), url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'), url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'), url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
-  src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url("../fonts/apercu_regular-webfont.eot");
-  src: url("../fonts/apercu_regular-webfont.eot?#iefix")format("embedded-opentype"), url("../fonts/apercu_regular-webfont.woff") format("woff"), url("../fonts/apercu_regular-webfont.ttf") format("truetype"), url("../fonts/apercu_regular-webfont.svg#ApercuRegular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'ApercuMono';
-  src: url("../fonts/apercu_mono-webfont.eot");
-  src: url("../fonts/apercu_mono-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_mono-webfont.woff") format("woff"), url("../fonts/apercu_mono-webfont.ttf") format("truetype"), url("../fonts/apercu_mono-webfont.svg#ApercuMono") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url("../fonts/apercu_medium_italic-webfont.eot");
-  src: url("../fonts/apercu_medium_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_medium_italic-webfont.woff") format("woff"), url("../fonts/apercu_medium_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_medium_italic-webfont.svg#ApercuMediumItalic") format("svg");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url("../fonts/apercu_bold_italic-webfont.eot");
-  src: url("../fonts/apercu_bold_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_bold_italic-webfont.woff") format("woff"), url("../fonts/apercu_bold_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_bold_italic-webfont.svg#ApercuBoldItalic") format("svg");
-  font-weight: bold;
-  font-style: italic;
-}
-
-// end Janky font-face
 
 *
 	box-sizing border-box
@@ -312,7 +308,7 @@ h2
 	width: 33.33333333333333%;
 	float left
 	text-align center
-	
+
 	line-height 40px
 
 	padding 8px 14px
