@@ -1,0 +1,373 @@
+@font-face {
+  font-family: 'Mono Social Icons Font';
+  src: url('../fonts/MonoSocialIconsFont-1.10.eot');
+  src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'), url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'), url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'), url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+  src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url("../fonts/apercu_regular-webfont.eot");
+  src: url("../fonts/apercu_regular-webfont.eot?#iefix")format("embedded-opentype"), url("../fonts/apercu_regular-webfont.woff") format("woff"), url("../fonts/apercu_regular-webfont.ttf") format("truetype"), url("../fonts/apercu_regular-webfont.svg#ApercuRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ApercuMono';
+  src: url("../fonts/apercu_mono-webfont.eot");
+  src: url("../fonts/apercu_mono-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_mono-webfont.woff") format("woff"), url("../fonts/apercu_mono-webfont.ttf") format("truetype"), url("../fonts/apercu_mono-webfont.svg#ApercuMono") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url("../fonts/apercu_medium_italic-webfont.eot");
+  src: url("../fonts/apercu_medium_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_medium_italic-webfont.woff") format("woff"), url("../fonts/apercu_medium_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_medium_italic-webfont.svg#ApercuMediumItalic") format("svg");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Apercu';
+  src: url("../fonts/apercu_bold_italic-webfont.eot");
+  src: url("../fonts/apercu_bold_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_bold_italic-webfont.woff") format("woff"), url("../fonts/apercu_bold_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_bold_italic-webfont.svg#ApercuBoldItalic") format("svg");
+  font-weight: bold;
+  font-style: italic;
+}
+
+primary = #ff00ff
+primary_tinted = #cc00cc
+secondary = #606
+secondary_tinted = #990099
+
+border-radius(n)
+	-webkit-border-radius n
+	-moz-border-radius n
+	border-radius n
+
+transition(n)
+	-webkit-transition all n ease
+	-moz-transition all n ease
+	-ms-transition all n ease
+	transition all n ease
+
+perspective(n)
+	-webkit-perspective n
+	-moz-perspective n
+	-ms-perspective n
+	perspective n
+
+perspective-origin(a,b)
+	-webkit-perspective-origin a b
+	-moz-perspective-origin a b
+	-ms-perspective-origin a b
+	perspective-origin a b
+
+transform-origin(a,b)
+	-webkit-transform-origin a b
+	-moz-transform-origin a b
+	-ms-transform-origin a b
+	transform-origin a b
+
+transform-style(s)
+	-webkit-transform-style s
+	-moz-transform-style s
+	-ms-transform-style s
+	transform-style s
+
+backface-visibility(v)
+	-webkit-backface-visibility v
+	-moz-backface-visibility v
+	backface-visibility v
+
+translate(x,y,z,r)
+	-webkit-transform translate3d(x,y,z) rotateX(r)
+	-moz-transform translate3d(x,y,z) rotateX(r)
+	-ms-transform translate3d(x,y,z) rotateX(r)
+	transform translate3d(x,y,z) rotateX(r)
+
+*
+	box-sizing border-box
+
+html, body
+	margin 0
+	padding 0
+
+html
+	height 100%
+	font-family Apercu
+
+body
+	width 100%
+	height 100%
+	position relative
+	overflow-x hidden
+
+a
+	color secondary
+	text-decoration underline
+
+.social
+	display table
+	margin 0 auto
+
+.social .row
+	display table-row
+
+.social .row a
+	display table-cell
+	color primary
+	text-decoration none
+	transition 400ms
+
+.social .row a:hover
+	color secondary
+
+.social .row a:first-child
+	padding-right 40px
+
+.social .row a span
+	vertical-align middle
+	padding-left 8px
+
+.social .row a span:first-child
+	font-family Mono Social Icons Font
+	font-size 42px
+	padding-left 0
+
+.top
+	width 100%
+	background #FFF
+	position absolute
+	top 0
+	z-index 3
+
+.banner, .content
+	width 100%
+	max-width 960px
+	margin 0 auto
+	color secondary
+
+.banner .me
+	font-size 20px
+
+.banner .col
+	display inline-block
+	margin 26px 30px 18px 30px
+
+nav
+	text-transform uppercase
+	font-size 17px
+	letter-spacing 0.2em
+	text-align center
+	font-style italic
+
+nav ul
+	list-style-type none
+	margin 0
+	padding 0
+
+nav li
+	display inline-block
+	margin 20px
+
+nav a
+	display inline-block
+	color white
+	text-decoration none
+
+.content
+	font-family Georgia, Cambria, "Times New Roman", Times, serif
+	font-weight 400
+	font-size 18px
+	line-height 1.5
+	margin-bottom 60px
+	padding-bottom 80px
+
+	position relative
+	z-index 2
+
+p
+	margin 6px 0 34px 0
+
+.fineprint, .fineprint a
+	color #888
+
+.fineprint
+	margin 20px 0 0 0
+	text-align center
+	font-size 16px
+	font-style italic
+	letter-spacing 0.8px
+
+.content a
+	text-decoration underline
+	transition 400ms
+
+.content a:hover
+	color primary
+
+section
+	padding 0 70px 40px 70px
+	margin-bottom 100px
+
+section.capabilities, section.brands, section.more
+	background white
+	padding-top 40px
+
+section.work p, section.brands p
+	margin-bottom 0
+
+h1
+	font-family Apercu
+	font-size 32px
+	text-transform uppercase
+	letter-spacing 0.08em
+	color primary
+	display inline-block
+	background white
+
+h2
+	font-family Apercu
+	font-size 16px
+	text-transform uppercase
+	letter-spacing 0.08em
+	color secondary
+	margin-bottom 0
+
+.roll
+	display inline-block
+	line-height 1.2
+	overflow hidden
+	vertical-align top
+	background primary_tinted
+	perspective 400px
+	perspective-origin 50%,50%
+
+.roll span
+	display block
+	position relative
+	padding 8px 24px
+	pointer-events none
+	background primary
+	transition 400ms
+	transform-origin 50%,0%
+	transform-style preserve-3d
+	backface-visibility hidden
+
+.roll span:after
+	content attr(data-title)
+	display block
+	position absolute
+	left 0
+	top 0
+	padding 8px 24px
+	background primary_tinted
+	backface-visibility hidden
+	transform-origin 50%,0%
+	translate 0px,110%,0px,-90deg
+
+.roll:hover span
+	translate 0px,0px,-45px,90deg
+
+.wrap
+	background radial-gradient(center, circle cover, #01ffe5 0%, secondary_tinted 100%)
+	width 100%
+	height 100%
+	position fixed
+	z-index 1
+	top 0
+
+.loading
+	color #c0c
+	text-transform uppercase
+	text-align center
+	font-style italic
+	width 100%
+	top 50%
+	position fixed
+
+.three
+	opacity 0
+	transition 800ms
+
+.three.visible
+	opacity 1
+
+.gallery
+	width 100%
+	margin 40px 0
+
+.gallery div
+	width: 33.33333333333333%;
+	float left
+	text-align center
+
+	line-height 40px
+
+	padding 8px 14px
+
+.gallery:last-child:after
+	content ''
+	display block
+	clear both
+
+.gallery div img
+	width 100%
+	height auto
+
+	border 2px solid #EBEBEB
+	border-radius(4px)
+
+img.me
+	display block
+	width 24%
+	float left
+	margin 0 30px 30px 0
+
+	border-radius(4px)
+
+@media only screen and (max-width: 960px)
+	.banner .col
+		display none
+
+	.banner .col:first-child
+		display inline-block
+		float left
+
+	.banner .col:first-child, nav
+		margin 2%
+
+	nav
+		text-align right
+		float right
+		vertical-align top
+		display inline-block
+
+	nav li
+		margin 4px 0 0 4px
+
+@media only screen and (max-width: 760px)
+	.gallery div
+		width 50%
+
+	img.me
+		width 100%
+
+@media only screen and (max-width: 500px)
+	.gallery div
+		width 100%
+
+	section
+		padding 0 36px 20px 36px
+
+	nav li
+		display block
+		margin-top 6px
+
+	.content
+		font-size 16px

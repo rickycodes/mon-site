@@ -1,0 +1,9 @@
+{
+  "name": "mon-site",
+  "version": "0.0.0",
+  "description": "website!",
+  "scripts": {
+    "start": "harp compile && harp server"
+  },
+  "author": "ricky miller caterpillar"
+}
