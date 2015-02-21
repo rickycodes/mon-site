@@ -142,7 +142,8 @@ a
 .top
 	width 100%
 	background #FFF
-	position absolute
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+	position fixed
 	top 0
 	z-index 3
 
@@ -152,12 +153,9 @@ a
 	margin 0 auto
 	color secondary
 
-.banner .me
-	font-size 20px
-
 .banner .col
 	display inline-block
-	margin 26px 30px 18px 30px
+	margin 20px 30px 10px
 
 nav
 	text-transform uppercase
@@ -173,7 +171,7 @@ nav ul
 
 nav li
 	display inline-block
-	margin 20px
+	margin 16px
 
 nav a
 	display inline-block
@@ -275,7 +273,8 @@ h2
 	translate 0px,0px,-45px,90deg
 
 .wrap
-	background radial-gradient(center, circle cover, #01ffe5 0%, secondary_tinted 100%)
+	background secondary_tinted
+	background radial-gradient(circle farthest-corner at center center , #01FFE5 0%, secondary_tinted 100%) repeat scroll 0% 0% transparent
 	width 100%
 	height 100%
 	position fixed
