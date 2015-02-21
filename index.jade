@@ -9,13 +9,13 @@ html(lang='en' prefix='og:http://ogp.me/ns#')
     != partial('partials/_nav')
     
     .content
-      section.capabilities
+      section.im
 
-        != partial('markdown/_capabilities')
+        != partial('markdown/_im')
 
-      section.brands
+      section.cv
 
-          h1 Brands
+          h1 CV:
 
           p Through my experiences with various agencies, organizations and individuals I've been fortunate to have worked with the following people:
 
@@ -39,14 +39,13 @@ html(lang='en' prefix='og:http://ogp.me/ns#')
             div
               img(src='img/uw.png')
 
-      section.more
+      section.faq
 
-        != partial('markdown/_more')
+        != partial('markdown/_faq')
 
         != partial('partials/_social')
 
     .wrap
-      //- .loading Loading…
       .three
     
     != partial('partials/_footer')

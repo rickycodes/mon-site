@@ -151,14 +151,14 @@ require [
       @y = window.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY == 'UP'
-        camera.position.z += 0.02
+        camera.position.z += 0.8
         group.rotation.x += 0.02
         group.rotation.y += 0.0226
         group.rotation.z += 0.0176
         return
       if directionY == 'DOWN'
-        camera.position.z -= 0.02
-        group.rotation.x -= 0.02
+        camera.position.z -= 0.8
+        group.rotation.x -= 0.08
         group.rotation.y -= 0.0226
         group.rotation.z -= 0.0176
         return

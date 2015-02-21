@@ -1,6 +1,6 @@
 /* TEAM */
-    Design and front-end development: Ricky Miller
-    URL: http://rmill.ca
+    Built by: Ricky Miller
+    URL: http://ricky.codes
     Twitter: @rmill
 
 
@@ -11,4 +11,7 @@
 /* SITE */
     Language: English
     Doctype: HTML5
-    Software: Nginx, DocPad, Grunt, Node.js
+    Software:
+      require.js: http://github.com/jrburke/requirejs
+      Tween.js: https://github.com/tweenjs/tween.js/tree/master
+      Three.js: http://threejs.org/

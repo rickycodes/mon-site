@@ -142,7 +142,7 @@ a
 .top
 	width 100%
 	background #FFF
-	box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+	box-shadow: 0 2px 1px rgba(0, 0, 0, .05);
 	position fixed
 	top 0
 	z-index 3
@@ -212,13 +212,18 @@ p
 section
 	padding 0 70px 40px 70px
 	margin-bottom 100px
-
-section.capabilities, section.brands, section.more
 	background white
 	padding-top 40px
 
-section.work p, section.brands p
-	margin-bottom 0
+section.im ol
+	list-style-type none
+	margin 10px
+	padding 0
+	font-size 18px
+	width: 33.33%
+
+section.im ol ol
+	margin-left: 10px
 
 h1
 	font-family Apercu
@@ -242,9 +247,14 @@ h2
 	line-height 1.2
 	overflow hidden
 	vertical-align top
-	background primary_tinted
+	background primary
 	perspective 400px
 	perspective-origin 50%,50%
+	border-radius 3px
+	border 2px solid primary_tinted
+
+.roll:hover
+	border-color secondary
 
 .roll span
 	display block
@@ -302,7 +312,7 @@ h2
 	margin 40px 0
 
 .gallery div
-	width: 33.33333333333333%;
+	width 33.33333333333333%;
 	float left
 	text-align center
 
