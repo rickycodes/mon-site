@@ -1,5 +1,5 @@
 require [
-  'webGLCheck'
+  'WebGLCheck'
   'Three'
   'Tween'
   'RequestAnimationFrame'
@@ -11,7 +11,6 @@ require [
     purple = 0xff01ff
     blue = 0x22ffff
     body = doc.body
-    top = ''
     content = ''
     three = ''
     webGLEnabled = ''
@@ -142,21 +141,25 @@ require [
 
     mousemove = (e) ->
       e.preventDefault()
+      mouse.clientY = e.clientY
       mouse.x = e.clientX / win.innerWidth * 2 - 1
       mouse.y = -(e.clientY / win.innerHeight) * 2 + 1
       return
 
     scroll = (e) ->
       scrollY = (@y or window.pageYOffset) - window.pageYOffset
+      scrollTop = document.body.scrollTop or document.documentElement.scrollTop
       @y = window.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY == 'UP'
+        top.setAttribute 'class', 'top'
         camera.position.z += 0.8
         group.rotation.x += 0.02
         group.rotation.y += 0.0226
         group.rotation.z += 0.0176
         return
       if directionY == 'DOWN'
+        top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         camera.position.z -= 0.8
         group.rotation.x -= 0.08
         group.rotation.y -= 0.0226
