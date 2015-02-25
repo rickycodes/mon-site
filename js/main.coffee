@@ -68,7 +68,7 @@ require [
     navClick = (e) ->
       e.preventDefault()
       dest = doc.getElementsByClassName(@getAttribute('data-to'))[0]
-      from = 0 or document.body.scrollTop or document.documentElement.scrollTop
+      from = 0 or body.scrollTop or win.scrollTop or doc.documentElement.scrollTop
       to = dest.offsetTop - 180
       new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
         body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
@@ -136,7 +136,7 @@ require [
 
     scroll = (e) ->
       scrollY = (@y or window.pageYOffset) - window.pageYOffset
-      scrollTop = body.scrollTop = win.scrollTop = doc.documentElement.scrollTop
+      scrollTop = body.scrollTop or win.scrollTop or doc.documentElement.scrollTop
       @y = window.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY is 'UP'
