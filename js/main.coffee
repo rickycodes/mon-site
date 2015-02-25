@@ -52,40 +52,33 @@ require [
       requestAnimationFrame animate
       TWEEN.update()
       if webGLEnabled
-        len = group.children.length
-        i = 0
-        while i < len
-          if i != len - 1
-            group.children[i].rotation.x += 0.002
-            group.children[i].rotation.y += 0.003
-            group.children[i].rotation.z += 0.001
-          i++
+        for child in group.children
+          if not child instanceof THREE.Line
+            child.rotation.x += 0.002
+            child.rotation.y += 0.003
+            child.rotation.z += 0.001
         render()
       return
 
     bindExternalLinks = ->
       links = doc.querySelectorAll('section a')
-      i = 0
-      while i < links.length
-        links[i].setAttribute 'target', '_blank'
-        i++
+      link.setAttribute 'target', '_blank' for link in links
+      return
+
+    navClick = (e) ->
+      e.preventDefault()
+      dest = doc.getElementsByClassName(@getAttribute('data-to'))[0]
+      from = 0 or body.scrollTop = win.scrollTop = doc.documentElement.scrollTop
+      to = dest.offsetTop - 180
+      new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
+        body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
+        return
+      ).start()
       return
 
     bindMainNav = (e) ->
       links = doc.querySelectorAll('[data-to]')
-      i = 0
-      while i < links.length
-        links[i].addEventListener 'click', (e) ->
-          e.preventDefault()
-          dest = doc.getElementsByClassName(@getAttribute('data-to'))[0]
-          from = 0 or document.body.scrollTop or document.documentElement.scrollTop
-          to = dest.offsetTop - 180
-          new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
-            body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
-            return
-          ).start()
-          return
-        i++
+      link.addEventListener 'click', navClick for link in links
       return
 
     init = ->
@@ -94,17 +87,13 @@ require [
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
       three = doc.getElementsByClassName('three')[0]
       sections = doc.getElementsByTagName('section')
-      i = 0
-      while i < sections.length
-        sections[i].setAttribute 'style', 'margin-bottom: 1000px !important;'
-        i++
+      section.setAttribute 'style', 'margin-bottom: 1000px !important;' for section in sections
       camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
       camera.position.z = 1000
       scene = new (THREE.Scene)
       group = new (THREE.Object3D)
       geometry = new (THREE.Geometry)
-      i = 0
-      while i < 80
+      for num in [1..80]
         material = new (THREE.MeshPhongMaterial)(color: getRandomHue())
         mesh = new (THREE.Mesh)(getGeom(), material)
         mesh.position.x = Math.random() * 1200 - 600
@@ -115,7 +104,6 @@ require [
         mesh.rotation.y = Math.random() * 2 * Math.PI
         mesh.rotation.z = Math.random() * 2 * Math.PI
         group.add mesh
-        i++
       lineMaterial = new (THREE.LineBasicMaterial)(color: blue)
       line = new (THREE.Line)(geometry, lineMaterial)
       light = new (THREE.DirectionalLight)(0xffffff, 1.2)
@@ -148,16 +136,16 @@ require [
 
     scroll = (e) ->
       scrollY = (@y or window.pageYOffset) - window.pageYOffset
-      scrollTop = document.body.scrollTop or document.documentElement.scrollTop
+      scrollTop = body.scrollTop = win.scrollTop = doc.documentElement.scrollTop
       @y = window.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
-      if directionY == 'UP'
+      if directionY is 'UP'
         top.setAttribute 'class', 'top'
         group.rotation.x += 0.02
         group.rotation.y += 0.0226
         group.rotation.z += 0.0176
         return
-      if directionY == 'DOWN'
+      if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         group.rotation.x -= 0.08
         group.rotation.y -= 0.0226
