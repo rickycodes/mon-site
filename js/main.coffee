@@ -140,16 +140,16 @@ require [
       @y = window.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY is 'UP'
-        top.setAttribute 'class', 'top'
-        group.rotation.x += 0.02
-        group.rotation.y += 0.0226
-        group.rotation.z += 0.0176
+        top.setAttribute 'class', 'top show'
+        group.rotation.x += 0.08
+        group.rotation.y += 0.024
+        group.rotation.z += 0.018
         return
       if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         group.rotation.x -= 0.08
-        group.rotation.y -= 0.0226
-        group.rotation.z -= 0.0176
+        group.rotation.y -= 0.024
+        group.rotation.z -= 0.018
         return
       return
 

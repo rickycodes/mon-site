@@ -146,11 +146,16 @@ a
 	position fixed
 	top 0
 	z-index 3
-	transition 400ms
-	transition-delay .2s
+	transition 300ms
 
 .top.hide
 	translate 0px,-100%,0px,0deg
+	transition ease-out
+	transition-delay .2s
+
+.top.show
+	translate 0px,0px,0px,0deg
+	transition 1000ms ease-in
 
 .banner, .content
 	width 100%
