@@ -53,7 +53,7 @@ require [
       TWEEN.update()
       if webGLEnabled
         for child in group.children
-          if not child instanceof THREE.Line
+          if child not instanceof THREE.Line
             child.rotation.x += 0.002
             child.rotation.y += 0.003
             child.rotation.z += 0.001
@@ -89,11 +89,11 @@ require [
       sections = doc.getElementsByTagName('section')
       section.setAttribute 'style', 'margin-bottom: 1000px !important;' for section in sections
       camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
-      camera.position.z = 1000
+      camera.position.z = 900
       scene = new (THREE.Scene)
       group = new (THREE.Object3D)
       geometry = new (THREE.Geometry)
-      for num in [1..80]
+      for num in [1..30]
         material = new (THREE.MeshPhongMaterial)(color: getRandomHue())
         mesh = new (THREE.Mesh)(getGeom(), material)
         mesh.position.x = Math.random() * 1200 - 600
