@@ -1,29 +1,28 @@
 require [
-  'WebGLCheck'
-  'Three'
-  'Tween'
-  'RequestAnimationFrame'
+  'libs/WebGLCheck'
+  'libs/Three'
+  'libs/Tween'
+  'libs/RequestAnimationFrame'
 ], ->
   monSite = do ->
-    startTime = Date.now()
     doc = document
     win = window
     purple = 0xff01ff
     blue = 0x22ffff
     body = doc.body
-    content = ''
-    three = ''
-    webGLEnabled = ''
-    group = ''
+    webGLEnabled = check()
+    scene = new (THREE.Scene)
+    camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
+    camera.position.z = 900
+    group = new (THREE.Object3D)
+    geometry = new (THREE.Geometry)
     animSpeed = 1200
     ease = TWEEN.Easing.Quadratic.Out
-    camera = ''
-    scene = ''
-    renderer = ''
+    renderer = new (THREE.WebGLRenderer)(alpha: true)
+    renderer.setSize win.innerWidth, win.innerHeight
     # loading = doc.getElementsByClassName('loading')[0]
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
-    scrolly = ''
 
     getRandNum = (min, max) ->
       Math.floor Math.random() * (max - min + 1) + min
@@ -76,23 +75,18 @@ require [
       ).start()
       return
 
-    bindMainNav = (e) ->
+    bindMainNav = ->
       links = doc.querySelectorAll('[data-to]')
       link.addEventListener 'click', navClick for link in links
       return
 
-    init = ->
+    setup = ->
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
       three = doc.getElementsByClassName('three')[0]
       sections = doc.getElementsByTagName('section')
       section.setAttribute 'style', 'margin-bottom: 1000px !important;' for section in sections
-      camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
-      camera.position.z = 900
-      scene = new (THREE.Scene)
-      group = new (THREE.Object3D)
-      geometry = new (THREE.Geometry)
       for num in [1..30]
         material = new (THREE.MeshPhongMaterial)(color: getRandomHue())
         mesh = new (THREE.Mesh)(getGeom(), material)
@@ -117,8 +111,6 @@ require [
       group.add line
       scene.add light
       scene.add group
-      renderer = new (THREE.WebGLRenderer)(alpha: true)
-      renderer.setSize win.innerWidth, win.innerHeight
       three.setAttribute 'class', 'three visible'
       three.appendChild renderer.domElement
       # loading.parentElement.removeChild loading
@@ -161,9 +153,8 @@ require [
       return
 
     do ->
-      webGLEnabled = check()
       if webGLEnabled
-        init()
+        setup()
       else
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
