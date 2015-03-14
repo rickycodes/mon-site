@@ -24,6 +24,10 @@ require [
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
+    setTitle = () ->
+      loc = 'ricky! • ' + window.location.host
+      doc.title = loc
+
     getRandNum = (min, max) ->
       Math.floor Math.random() * (max - min + 1) + min
 
@@ -159,6 +163,7 @@ require [
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
         # loading.parentElement.removeChild loading
+      setTitle()
       animate()
       bindMainNav()
       bindExternalLinks()
