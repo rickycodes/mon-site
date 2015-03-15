@@ -9,9 +9,10 @@ html(lang='en' prefix='og:http://ogp.me/ns#')
     != partial('partials/_nav')
     
     .content
-      section.im
+      section.about
 
-        != partial('markdown/_im')
+        != partial('markdown/_about')
+        != partial('partials/_social')
 
       section.cv
 
@@ -39,11 +40,9 @@ html(lang='en' prefix='og:http://ogp.me/ns#')
             div
               img(src='img/uw.png')
 
-      section.faq
+      section.skills
 
-        != partial('markdown/_faq')
-
-        != partial('partials/_social')
+        != partial('markdown/_skills')
 
     .wrap
       .three

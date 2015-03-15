@@ -1,4 +1,4 @@
-# FAQ:
+# About:
 
 <img class='me' src='img/me_glitch.jpg' /> Name: Ricky Miller
 

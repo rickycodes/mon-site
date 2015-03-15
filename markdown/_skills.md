@@ -1,4 +1,4 @@
-# a person who builds INTERNET:
+# Skills:
 
 ## front end
 
