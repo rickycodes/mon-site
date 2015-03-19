@@ -25,7 +25,8 @@ require [
     mouse = {}
 
     setTitle = () ->
-      loc = 'ricky! • ' + window.location.host
+      flair = ['ᕕ( ᐛ )ᕗ', '(☞ﾟヮﾟ)☞', '(ง ͠° ͟ʖ ͡°)ง', '¯\\_(ツ)_/¯']
+      loc = flair[Math.floor(Math.random()*flair.length)] + ' • ' + window.location.host
       doc.title = loc
 
     getRandNum = (min, max) ->
