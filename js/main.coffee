@@ -89,7 +89,6 @@ require [
       win.location.reload()
 
     setup = ->
-      console.log 'setup'
       body.setAttribute 'class', ''
       renderer = new (THREE.WebGLRenderer)(alpha: true)
       renderer.setSize win.innerWidth, win.innerHeight if hash isnt 'glitch'
