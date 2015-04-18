@@ -288,7 +288,8 @@ h2
 	z-index 1
 	top 0
 
-.loading
+.loading:after
+	content: 'loading...'
 	color #c0c
 	text-transform uppercase
 	text-align center
@@ -296,10 +297,15 @@ h2
 	width 100%
 	top 50%
 	position fixed
+	z-index 1
 
 .three
+	height 120%
 	opacity 0
 	transition 800ms
+
+canvas
+	height 120%
 
 .three.visible
 	opacity 1

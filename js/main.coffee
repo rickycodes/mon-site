@@ -10,6 +10,7 @@ require [
     purple = 0xff01ff
     blue = 0x22ffff
     body = doc.body
+    content = ''
     webGLEnabled = check()
     scene = new (THREE.Scene)
     camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
@@ -20,7 +21,6 @@ require [
     ease = TWEEN.Easing.Quadratic.Out
     renderer = new (THREE.WebGLRenderer)(alpha: true)
     renderer.setSize win.innerWidth, win.innerHeight
-    # loading = doc.getElementsByClassName('loading')[0]
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
@@ -86,6 +86,7 @@ require [
       return
 
     setup = ->
+      body.setAttribute 'class', ''
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
@@ -118,7 +119,6 @@ require [
       scene.add group
       three.setAttribute 'class', 'three visible'
       three.appendChild renderer.domElement
-      # loading.parentElement.removeChild loading
       doc.addEventListener 'mousemove', mousemove, false
       win.addEventListener 'scroll', scroll, false
       win.addEventListener 'resize', resize, false
@@ -163,7 +163,7 @@ require [
       else
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
-        # loading.parentElement.removeChild loading
+        body.setAttribute 'class', ''
       setTitle()
       animate()
       bindMainNav()
