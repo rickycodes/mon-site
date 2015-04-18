@@ -2,9 +2,11 @@
 
 <img class='me' src='img/me_glitch.jpg' /> Name: Ricky Miller
 
-Maker/Baker/Noodler of INTERNET. I also bike, climb &amp; swim. You can usually find me being silly on [Twitter](https://twitter.com/rmill/), but you can also [email me](mailto:ricky.miller@gmail.com) or /msg <em>rmill</em> on freenode IRC
+Maker/Baker/Noodler of INTERNET. I also bike, climb &amp; swim. You can usually find me being silly on [Twitter](https://twitter.com/rmill/), but you can also [email me](mailto:ricky.miller@gmail.com) or /msg <em>rmill</em> on freenode IRC.
 
 Here is my collection of random [images](http://ricky.codes/i/) (inspired by [@wilto](https://twitter.com/wilto/))
+
+Feel free to <a data-internal href='/'>(un)</a><a data-internal href='/#glitch'>glitch</a>
 
 Later alligator,
 

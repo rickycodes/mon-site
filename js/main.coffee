@@ -11,6 +11,7 @@ require [
     blue = 0x22ffff
     body = doc.body
     content = ''
+    hash = win.location.hash.replace('#','')
     webGLEnabled = check()
     scene = new (THREE.Scene)
     camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
@@ -19,8 +20,7 @@ require [
     geometry = new (THREE.Geometry)
     animSpeed = 1200
     ease = TWEEN.Easing.Quadratic.Out
-    renderer = new (THREE.WebGLRenderer)(alpha: true)
-    renderer.setSize win.innerWidth, win.innerHeight
+    renderer = ''
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
@@ -65,7 +65,7 @@ require [
       return
 
     bindExternalLinks = ->
-      links = doc.querySelectorAll('section a')
+      links = doc.querySelectorAll('section a:not([data-internal])')
       link.setAttribute 'target', '_blank' for link in links
       return
 
@@ -85,8 +85,14 @@ require [
       link.addEventListener 'click', navClick for link in links
       return
 
+    redraw = ->
+      win.location.reload()
+
     setup = ->
+      console.log 'setup'
       body.setAttribute 'class', ''
+      renderer = new (THREE.WebGLRenderer)(alpha: true)
+      renderer.setSize win.innerWidth, win.innerHeight if hash isnt 'glitch'
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
@@ -122,6 +128,7 @@ require [
       doc.addEventListener 'mousemove', mousemove, false
       win.addEventListener 'scroll', scroll, false
       win.addEventListener 'resize', resize, false
+      win.addEventListener 'hashchange', redraw, false
       return
 
     mousemove = (e) ->
@@ -154,7 +161,7 @@ require [
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
-      renderer.setSize window.innerWidth, window.innerHeight
+      renderer.setSize window.innerWidth, window.innerHeight if hash isnt 'glitch'
       return
 
     do ->
