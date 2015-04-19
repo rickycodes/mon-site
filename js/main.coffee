@@ -11,13 +11,11 @@ require [
     blue = 0x22ffff
     body = doc.body
     content = ''
-    hash = win.location.hash.replace('#','')
     webGLEnabled = check()
-    scene = new (THREE.Scene)
-    camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
-    camera.position.z = 900
-    group = new (THREE.Object3D)
-    geometry = new (THREE.Geometry)
+    scene = ''
+    camera = ''
+    group = ''
+    geometry = ''
     animSpeed = 1200
     ease = TWEEN.Easing.Quadratic.Out
     renderer = ''
@@ -69,6 +67,19 @@ require [
       link.setAttribute 'target', '_blank' for link in links
       return
 
+    bindInternalLinks = ->
+      links = doc.querySelectorAll('[data-internal]')
+      link.addEventListener 'click', internalClick for link in links
+
+    bindMainNav = ->
+      links = doc.querySelectorAll('[data-to]')
+      link.addEventListener 'click', navClick for link in links
+      return
+
+    internalClick = (e) ->
+      e.preventDefault()
+      win.location.hash = '#' + this.getAttribute('data-internal')
+
     navClick = (e) ->
       e.preventDefault()
       dest = doc.getElementsByClassName(@getAttribute('data-to'))[0]
@@ -80,16 +91,20 @@ require [
       ).start()
       return
 
-    bindMainNav = ->
-      links = doc.querySelectorAll('[data-to]')
-      link.addEventListener 'click', navClick for link in links
-      return
-
     redraw = ->
-      win.location.reload()
+      three = doc.getElementsByClassName('three')[0]
+      canvas = doc.getElementsByTagName('canvas')[0]
+      three.removeChild(canvas)
+      setup()
 
     setup = ->
       body.setAttribute 'class', ''
+      scene = new (THREE.Scene)
+      camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
+      camera.position.z = 900
+      group = new (THREE.Object3D)
+      geometry = new (THREE.Geometry)
+      hash = win.location.hash.replace('#','')
       renderer = new (THREE.WebGLRenderer)(alpha: true)
       renderer.setSize win.innerWidth, win.innerHeight if hash isnt 'glitch'
       content = doc.getElementsByClassName('content')[0]
@@ -173,6 +188,7 @@ require [
       setTitle()
       animate()
       bindMainNav()
+      bindInternalLinks()
       bindExternalLinks()
       return
     return

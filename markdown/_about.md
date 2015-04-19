@@ -6,7 +6,7 @@ Maker/Baker/Noodler of INTERNET. I also bike, climb &amp; swim. You can usually 
 
 Here is my collection of random [images](http://ricky.codes/i/) (inspired by [@wilto](https://twitter.com/wilto/))
 
-Feel free to <a data-internal href='/'>(un)</a><a data-internal href='/#glitch'>glitch</a>
+Feel free to <a data-internal='' href='#'>(un)</a><a data-internal='glitch' href='#'>glitch</a>
 
 Later alligator,
 
