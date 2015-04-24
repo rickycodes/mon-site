@@ -106,7 +106,7 @@ require [
       geometry = new (THREE.Geometry)
       hash = win.location.hash.replace('#','')
       renderer = new (THREE.WebGLRenderer)(alpha: true)
-      renderer.setSize win.innerWidth, win.innerHeight if hash isnt 'glitch'
+      renderer.setSize win.innerWidth, win.innerHeight + 100 if hash isnt 'glitch'
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
@@ -175,7 +175,7 @@ require [
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
-      renderer.setSize window.innerWidth, window.innerHeight if hash isnt 'glitch'
+      renderer.setSize window.innerWidth, window.innerHeight + 100 if hash isnt 'glitch'
       return
 
     do ->
