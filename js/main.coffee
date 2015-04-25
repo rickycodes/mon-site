@@ -7,18 +7,19 @@ require [
   monSite = do ->
     doc = document
     win = window
+    animSpeed = 1200
+    ease = TWEEN.Easing.Quadratic.Out
     purple = 0xff01ff
     blue = 0x22ffff
     body = doc.body
-    content = ''
+    content = null
     webGLEnabled = check()
-    scene = ''
-    camera = ''
-    group = ''
-    geometry = ''
-    animSpeed = 1200
-    ease = TWEEN.Easing.Quadratic.Out
-    renderer = ''
+    scene = null
+    camera = null
+    group = null
+    geometry = null
+    hash = null
+    renderer = null
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
@@ -97,10 +98,13 @@ require [
       three.removeChild(canvas)
       setup()
 
+    getAspect = ->
+      return win.innerWidth / win.innerHeight
+
     setup = ->
       body.setAttribute 'class', ''
       scene = new (THREE.Scene)
-      camera = new (THREE.PerspectiveCamera)(75, win.innerWidth / win.innerHeight, 1, 2000)
+      camera = new (THREE.PerspectiveCamera)(75, getAspect(), 1, 2000)
       camera.position.z = 900
       group = new (THREE.Object3D)
       geometry = new (THREE.Geometry)
@@ -173,7 +177,7 @@ require [
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
-      camera.aspect = window.innerWidth / window.innerHeight
+      camera.aspect = getAspect()
       camera.updateProjectionMatrix()
       renderer.setSize window.innerWidth, window.innerHeight + 100 if hash isnt 'glitch'
       return
