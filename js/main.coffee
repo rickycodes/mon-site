@@ -12,14 +12,8 @@ require [
     purple = 0xff01ff
     blue = 0x22ffff
     body = doc.body
-    content = null
     webGLEnabled = check()
-    scene = null
-    camera = null
-    group = null
-    geometry = null
-    hash = null
-    renderer = null
+    hash = content = scene = camera = group = geometry = renderer = null
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
