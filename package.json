@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "website!",
   "scripts": {
-    "start": "harp server site",
-    "compile": "harp compile site"
+    "start": "harp server app",
+    "compile": "harp compile app"
   },
   "author": "ricky miller caterpillar"
 }
