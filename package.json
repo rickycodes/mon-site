@@ -4,7 +4,7 @@
   "description": "website!",
   "scripts": {
     "start": "harp server app",
-    "compile": "harp compile app"
+    "build": "harp compile app"
   },
   "author": "ricky miller caterpillar"
 }
