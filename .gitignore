@@ -1,2 +1,3 @@
-/app/www/*
+app/www/*
+node_modules
 npm-debug.log

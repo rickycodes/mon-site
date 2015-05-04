@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "website!",
   "scripts": {
+    "test": "intern-runner config=tests/intern reporters=pretty",
     "start": "harp server app",
     "build": "harp compile app"
   },

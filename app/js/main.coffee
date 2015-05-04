@@ -78,6 +78,7 @@ require [
     navClick = (e) ->
       e.preventDefault()
       dest = doc.getElementsByClassName(@getAttribute('data-to'))[0]
+      dest.setAttribute('data-current','')
       from = 0 or body.scrollTop or doc.documentElement.scrollTop
       to = dest.offsetTop - 180
       new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
