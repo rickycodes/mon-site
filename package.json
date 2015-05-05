@@ -9,6 +9,7 @@
   },
   "author": "ricky miller caterpillar",
   "devDependencies": {
+    "harp": "^0.17.0",
     "intern": "^2.2.2"
   }
 }

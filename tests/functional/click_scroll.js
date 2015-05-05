@@ -17,10 +17,9 @@ define([
                 .setFindTimeout(5000)
                 .findByCssSelector('.content > section[data-current=""] > h1').isDisplayed()
                     .then(function(value) {
-                        console.log(value);
                         assert.ok(value);
                     })
-                    .end()
+                    .end();
         }
     });
 });
