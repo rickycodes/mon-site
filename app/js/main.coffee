@@ -13,7 +13,7 @@ require [
     blue = 0x22ffff
     body = doc.body
     webGLEnabled = check()
-    hash = content = scene = camera = group = geometry = renderer = null
+    hash = content = sections = scene = camera = group = geometry = renderer = null
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
@@ -78,11 +78,13 @@ require [
     navClick = (e) ->
       e.preventDefault()
       dest = doc.getElementsByClassName(@getAttribute('data-to'))[0]
-      dest.setAttribute('data-current','')
       from = 0 or body.scrollTop or doc.documentElement.scrollTop
       to = dest.offsetTop - 180
+      for section in sections
+        section.removeAttribute('data-current')
       new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
         body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
+        dest.setAttribute('data-current','')
         return
       ).start()
       return
@@ -97,7 +99,7 @@ require [
       return win.innerWidth / win.innerHeight
 
     setup = ->
-      body.setAttribute 'class', ''
+      body.setAttribute 'class', 'animate'
       scene = new (THREE.Scene)
       camera = new (THREE.PerspectiveCamera)(75, getAspect(), 1, 2000)
       camera.position.z = 900
