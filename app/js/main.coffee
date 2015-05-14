@@ -58,7 +58,7 @@ require [
       return
 
     bindExternalLinks = ->
-      links = doc.querySelectorAll('section a:not([data-internal])')
+      links = doc.querySelectorAll('section a:not([data-internal]):not([data-to])')
       link.setAttribute 'target', '_blank' for link in links
       return
 

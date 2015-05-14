@@ -2,7 +2,7 @@
 
 ## front end
 
-Excellent knowledge of HTML(5), CSS, Java$cript (including, but not limited to libraries and MVC frameworks: [jQuery](http://jquery.com/), [BackBone.js](http://backbonejs.org/), [Ember.js](http://emberjs.com/) and [Meteor](http://www.meteor.com/)). Data Structures (XML, JSON) and Flash/ActionScript. Experience creating RealTime<small>™</small> toys with [Three.js](http://threejs.org/) and [Socket.io](http://socket.io/)
+Excellent knowledge of HTML(5), CSS, Java$cript (including, but not limited to libraries and MVC frameworks: [jQuery](http://jquery.com/), [BackBone.js](http://backbonejs.org/), [Ember.js](http://emberjs.com/) and [Angular](https://angularjs.org/)). Data Structures (XML, JSON) and Flash/ActionScript. Experience creating RealTime<small>™</small> toys with [Three.js](http://threejs.org/) and [Socket.io](http://socket.io/)
 
 ## back end
 
@@ -14,7 +14,7 @@ Experience with [MYSQL](http://mysql.com/), .NET/SQL, NOSQL: [Redis](http://redi
 
 ## apis
 
-Knowledge and experience integrating with a variety of external APIs, in particular: [Twitter](https://twitter.com/), [Facebook](https://facebook.com/), [Google Maps](https://maps.google.com/) and [Youtube](https://youtube.com/)
+Knowledge and experience integrating with a variety of external APIs, in particular: [Twitter](https://twitter.com/), [Facebook](https://facebook.com/)/[Instagram](https://instagram.com/), [Google Maps](https://maps.google.com/) and [Youtube](https://youtube.com/)
 
 ## revision control
 
