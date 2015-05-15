@@ -6,18 +6,20 @@ define([
 
     registerSuite({
 
-        name: 'click_scroll',
+        name: 'hashupdate',
 
-        'click nav and scroll down' : function() {
+        'hash updates on navigation click' : function() {
+
+            var linkToCheck = 'about';
 
             return this.remote
                 .get(require.toUrl('http://localhost:9000/'))
-                .findByCssSelector('nav ul li:first-child').click()
+                .findByCssSelector('nav ul li a[data-to="' + linkToCheck + '"]').click()
                     .end()
                 .setFindTimeout(5000)
-                .findByCssSelector('.content > section[data-current=""] > h1').isDisplayed()
+                .getCurrentUrl()
                     .then(function(value) {
-                        assert.ok(value);
+                        assert.ok(value.indexOf('#' + linkToCheck) != -1);
                     })
                     .end();
         }

@@ -94,7 +94,6 @@ require [
           section.removeAttribute('data-current')
         new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
           body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
-          dest.setAttribute('data-current','')
           return
         ).start()
       else
