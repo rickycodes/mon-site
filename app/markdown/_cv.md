@@ -2,7 +2,7 @@
 
 ## Intro
 
-I am a web developer with over 7 years experience building applications and products for a variety <a data-to='clients' href='#'>clients</a>. I've picked up a few <a data-to='skills' href='#'>skills</a> along the way.
+I am a web developer with over 7 years experience building products for a variety <a data-to='clients' href='#'>clients</a>. I've picked up a few <a data-to='skills' href='#'>skills</a> along the way.
 
 ### Professional Experience
 
@@ -10,9 +10,9 @@ I am a web developer with over 7 years experience building applications and prod
 <div class='indent'>
   <span>Web Developer</span>
   <ul>
-  <li>Contributed to many full-stack applications built using a variety of platforms</li>
-  <li>Focused heavily on the optimization of build tools/workflow</li>
-  <li>Introduced automated functional testing (selenium)</li>
+    <li>Contributed to many full-stack applications built using a variety of platforms</li>
+    <li>Focused heavily on the optimization of build tools and work flow</li>
+    <li>Introduced automated functional testing (selenium)</li>
   </ul>
 </div>
 
@@ -20,9 +20,9 @@ I am a web developer with over 7 years experience building applications and prod
 <div class='indent'>
   <span>Web Developer (contract)</span>
   <ul>
-  <li>Contributed to a large-scale Node.js enterprise app</li>
-  <li>Iterated on multiple UI design challenges</li>
-  <li>Worked collaboratively with people across Canada and the United States</li>
+    <li>Contributed to a large-scale Node.js enterprise app</li>
+    <li>Iterated on multiple UI design challenges</li>
+    <li>Worked collaboratively with people across Canada and the United States</li>
   </ul>
 </div>
 
@@ -30,9 +30,9 @@ I am a web developer with over 7 years experience building applications and prod
 <div class='indent'>
   <span>Web Developer</span>
   <ul>
-  <li>Developed user interfaces involved in nation-wide PR initiatives</li>
-  <li>Responsible for the execution of several interactive experiences</li>
-  <li>Created apps integrated with several social media platforms including Twitter and Facebook</li>
+    <li>Developed user interfaces involved in nation-wide PR initiatives</li>
+    <li>Responsible for the execution and delivery of interactive experiences</li>
+    <li>Created applications integrated with several social media services</li>
   </ul>
 </div>
 
@@ -40,9 +40,9 @@ I am a web developer with over 7 years experience building applications and prod
 <div class='indent'>
   <span>Web Developer</span>
   <ul>
-  <li>Designed and developed user complex user interfaces</li>
-  <li>Focused heavily on deployment of open source CMS and e-commerce POS systems (Magento)</li>
-  <li>Introduced new approaches to development which improved overall product and workflow</li>
+    <li>Translated design documents into comprehensive user interfaces</li>
+    <li>Worked heavily on open source CMS, e-commerce and point-of-sale systems (Magento)</li>
+    <li>Introduced modern approaches to development which improved overall product</li>
   </ul>
 </div>
 
