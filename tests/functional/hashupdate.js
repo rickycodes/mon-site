@@ -14,9 +14,9 @@ define([
 
             return this.remote
                 .get(require.toUrl('http://localhost:9000/'))
+                .setFindTimeout(5000)
                 .findByCssSelector('nav ul li a[data-to="' + linkToCheck + '"]').click()
                     .end()
-                .setFindTimeout(5000)
                 .getCurrentUrl()
                     .then(function(value) {
                         assert.ok(value.indexOf('#' + linkToCheck) != -1);
