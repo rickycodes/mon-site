@@ -17,6 +17,9 @@ require [
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
 
+    halfx = win.innerWidth / 2
+    halfy = win.innerHeight / 2
+
     setTitle = () ->
       flair = ['ᕕ( ᐛ )ᕗ', '(☞ﾟヮﾟ)☞', '(ง ͠° ͟ʖ ͡°)ง', '¯\\_(ツ)_/¯']
       loc = flair[Math.floor(Math.random()*flair.length)] + ' • ' + window.location.host
@@ -98,11 +101,17 @@ require [
     getAspect = ->
       return win.innerWidth / win.innerHeight
 
+    moveCamera = ->
+      camera.position.x += (mouse.x - camera.position.x) * 0.06;
+      camera.position.y += (- mouse.y - camera.position.y) * 0.06;
+      camera.position.z += (- mouse.y - camera.position.y) * 0.06;
+      camera.lookAt(scene.position);
+
     setup = ->
       body.setAttribute 'class', 'animate'
       scene = new (THREE.Scene)
       camera = new (THREE.PerspectiveCamera)(75, getAspect(), 1, 2000)
-      camera.position.z = 900
+      camera.position.z = 400
       group = new (THREE.Object3D)
       geometry = new (THREE.Geometry)
       hash = win.location.hash.replace('#','')
@@ -149,8 +158,9 @@ require [
     mousemove = (e) ->
       e.preventDefault()
       mouse.clientY = e.clientY
-      mouse.x = e.clientX / win.innerWidth * 2 - 1
-      mouse.y = -(e.clientY / win.innerHeight) * 2 + 1
+      mouse.x = e.clientX - halfx
+      mouse.y = e.clientY - halfy
+      moveCamera()
       return
 
     scroll = (e) ->
