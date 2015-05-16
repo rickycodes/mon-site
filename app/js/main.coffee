@@ -81,6 +81,7 @@ require [
     navClick = (e) ->
       e.preventDefault()
       win.location.hash = @getAttribute('data-to')
+      win.dispatchEvent(new HashChangeEvent('hashchange'))
       return
 
     scrollToSection = (e) ->

@@ -11,7 +11,7 @@ I am a web developer with over 7 years experience building products for a variet
   <span>Web Developer</span>
   <ul>
     <li>Contributed to many full-stack applications built using a variety of platforms</li>
-    <li>Focused heavily on the optimization of build tools and work flow</li>
+    <li>Heavily focused on the optimization of build tools and work flow</li>
     <li>Introduced automated functional testing (selenium)</li>
   </ul>
 </div>
@@ -41,7 +41,7 @@ I am a web developer with over 7 years experience building products for a variet
   <span>Web Developer</span>
   <ul>
     <li>Translated design documents into comprehensive user interfaces</li>
-    <li>Worked heavily on open source CMS, e-commerce and point-of-sale systems (Magento)</li>
+    <li>Helped fine tune buggy open source CMS, e-commerce and point-of-sale systems (Magento)</li>
     <li>Introduced modern approaches to development which improved overall product</li>
   </ul>
 </div>
