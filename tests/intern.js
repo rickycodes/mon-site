@@ -6,7 +6,12 @@ define({
 		'selenium-version': '2.41.0'
 	},
 	environments: [
-		{ browserName: 'firefox' }
+		{
+			browserName: [
+				'chrome',
+				'firefox'
+			]
+		}
 	],
 
 	maxConcurrency: 3,
@@ -15,5 +20,5 @@ define({
 	functionalSuites: [ 'tests/functional/hashupdate' ],
 
 	// A regular expression matching URLs to files that should not be included in code coverage analysis
-	excludeInstrumentation: /^(?:tests|node_modules)\//
+	// excludeInstrumentation: /^(?:tests|node_modules)\//
 });
