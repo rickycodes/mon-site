@@ -84,21 +84,19 @@ require [
       win.dispatchEvent(new HashChangeEvent('hashchange'))
       return
 
-    scrollToSection = (e) ->
+    scrollToSectionEl = (el) ->
+      dest = doc.getElementsByClassName(el)[0]
+      from = 0 or body.scrollTop or doc.documentElement.scrollTop
+      to = dest.offsetTop - 180
+      new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
+        body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
+        return
+      ).start()
+
+    selectSection = (e) ->
       location = win.location.hash
       section = location.replace('#','')
-      if section.length and section isnt 'glitch'
-        dest = doc.getElementsByClassName(section)[0]
-        from = 0 or body.scrollTop or doc.documentElement.scrollTop
-        to = dest.offsetTop - 180
-        for section in sections
-          section.removeAttribute('data-current')
-        new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
-          body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
-          return
-        ).start()
-      else
-        redraw()
+      if section.length and section isnt 'glitch' then scrollToSectionEl(section) else redraw()
 
     redraw = ->
       three = doc.getElementsByClassName('three')[0]
@@ -160,8 +158,8 @@ require [
       doc.addEventListener 'mousemove', mousemove, false
       win.addEventListener 'scroll', scroll, false
       win.addEventListener 'resize', resize, false
-      win.addEventListener 'hashchange', scrollToSection, false
-      scrollToSection() if win.location.hash.length and win.location.hash.indexOf('glitch') is -1
+      win.addEventListener 'hashchange', selectSection, false
+      selectSection() if win.location.hash.length and win.location.hash.indexOf('glitch') is -1
       return
 
     mousemove = (e) ->
