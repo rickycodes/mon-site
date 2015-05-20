@@ -2,7 +2,7 @@
 
 ## Intro
 
-I am a web developer with over 7 years experience building products for a variety <a data-to='clients' href='#'>clients</a>. I've picked up a few <a data-to='skills' href='#'>skills</a> along the way.
+I am a web developer with over 7 years experience building products for a variety of <a data-to='clients' href='#'>clients</a>. I've picked up a few <a data-to='skills' href='#'>skills</a> along the way.
 
 ### Professional Experience
 
