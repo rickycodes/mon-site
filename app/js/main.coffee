@@ -51,6 +51,7 @@ require [
     animate = ->
       requestAnimationFrame animate
       TWEEN.update()
+      scroll()
       if webGLEnabled
         for child in group.children
           if child not instanceof THREE.Line
@@ -156,7 +157,6 @@ require [
       three.setAttribute 'class', 'three visible'
       three.appendChild renderer.domElement
       doc.addEventListener 'mousemove', mousemove, false
-      win.addEventListener 'scroll', scroll, false
       win.addEventListener 'resize', resize, false
       win.addEventListener 'hashchange', selectSection, false
       selectSection() if win.location.hash.length and win.location.hash.indexOf('glitch') is -1
@@ -170,7 +170,7 @@ require [
       moveCamera()
       return
 
-    scroll = (e) ->
+    scroll = () ->
       scrollY = (@y or win.pageYOffset) - win.pageYOffset
       scrollTop = body.scrollTop or win.scrollTop or doc.documentElement.scrollTop
       @y = win.pageYOffset
