@@ -7,7 +7,7 @@ I am a web developer with over 7 years experience building products for a variet
 ### Professional Experience
 
 #### <a href='http://onemethod.com/'>Onemethod</a> [ 9/14 - present ]
-<div class='indent'>
+<div class='highlight'>
   <span>Web Developer</span>
   <ul>
     <li>Contributed to many full-stack applications built using a variety of platforms</li>
@@ -17,7 +17,7 @@ I am a web developer with over 7 years experience building products for a variet
 </div>
 
 #### <a href='http://metalab.co'>Metalab</a> [ 4/14 - 8/14 ]
-<div class='indent'>
+<div class='highlight'>
   <span>Web Developer (contract)</span>
   <ul>
     <li>Contributed to a large-scale Node.js enterprise app</li>
@@ -27,7 +27,7 @@ I am a web developer with over 7 years experience building products for a variet
 </div>
 
 #### <a href='http://highroad.com'>High Road Communications</a>, Ottawa ON [ 11/10 - 7/13 ]
-<div class='indent'>
+<div class='highlight'>
   <span>Web Developer</span>
   <ul>
     <li>Developed user interfaces involved in nation-wide PR initiatives</li>
@@ -37,7 +37,7 @@ I am a web developer with over 7 years experience building products for a variet
 </div>
 
 #### <a href='http://bioniq.ca'>BIONIQ</a>, Ottawa ON [ 02/09 – 11/09 ]
-<div class='indent'>
+<div class='highlight'>
   <span>Web Developer</span>
   <ul>
     <li>Translated design documents into comprehensive user interfaces</li>

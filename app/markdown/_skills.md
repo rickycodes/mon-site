@@ -18,7 +18,7 @@ Knowledge and experience integrating with a variety of external APIs, in particu
 
 ## revision control
 
-Excellent knowledge of version control systems: [TFS](http://msdn.microsoft.com/en-us/vstudio/ff637362.aspx), [SVN](http://en.wikipedia.org/wiki/Apache_Subversion), and [GIT](http://git-scm.com/) (preferred).
+Excellent knowledge of version control systems: <a href='https://msdn.microsoft.com/en-US/library/3h0544kx(v=vs.80).aspx'>Visual SourceSafe</a>, [SVN](http://en.wikipedia.org/wiki/Apache_Subversion), and [GIT](http://git-scm.com/) (preferred).
 
 ## computers
 
