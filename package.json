@@ -4,7 +4,7 @@
   "description": "website!",
   "scripts": {
     "test": "intern-runner config=tests/intern reporters=pretty",
-    "start": "cat _sig.md && harp server app",
+    "start": "cat sig.md && harp server app",
     "build": "harp compile app"
   },
   "author": "ricky miller caterpillar",
