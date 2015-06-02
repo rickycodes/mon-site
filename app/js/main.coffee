@@ -109,10 +109,10 @@ require [
       return win.innerWidth / win.innerHeight
 
     moveCamera = ->
-      camera.position.x += (mouse.x - camera.position.x) * 0.06;
-      camera.position.y += (- mouse.y - camera.position.y) * 0.06;
-      camera.position.z += (- mouse.y - camera.position.y) * 0.06;
-      camera.lookAt(scene.position);
+      camera.position.x += (mouse.x - camera.position.x) * 0.06
+      camera.position.y += (- mouse.y - camera.position.y) * 0.06
+      camera.position.z += (- mouse.y - camera.position.y) * 0.06
+      camera.lookAt scene.position
 
     setup = ->
       body.setAttribute 'class', 'animate'
@@ -123,7 +123,14 @@ require [
       geometry = new (THREE.Geometry)
       hash = win.location.hash.replace('#','')
       renderer = new (THREE.WebGLRenderer)(alpha: true)
-      renderer.setSize win.innerWidth, win.innerHeight + 100 if hash isnt 'glitch'
+      internal = document.querySelectorAll('[data-internal]')
+      if hash isnt 'glitch'
+        internal[0].setAttribute 'class', 'hidden'
+        internal[1].setAttribute 'class', ''
+        renderer.setSize win.innerWidth, win.innerHeight + 100
+      else
+        internal[0].setAttribute 'class', ''
+        internal[1].setAttribute 'class', 'hidden'
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
@@ -159,7 +166,7 @@ require [
       doc.addEventListener 'mousemove', mousemove, false
       win.addEventListener 'resize', resize, false
       win.addEventListener 'hashchange', selectSection, false
-      selectSection() if win.location.hash.length and win.location.hash.indexOf('glitch') is -1
+      selectSection() if win.location.hash.length and hash isnt 'glitch'
       return
 
     mousemove = (e) ->
