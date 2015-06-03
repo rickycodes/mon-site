@@ -43,7 +43,6 @@ require [
 
     render = ->
       renderer.render scene, camera
-      return
 
     animate = ->
       requestAnimationFrame animate
@@ -56,7 +55,6 @@ require [
             child.rotation.y += 0.003
             child.rotation.z += 0.001
         render()
-      return
 
     internalClick = (e) ->
       e.preventDefault()
@@ -66,7 +64,6 @@ require [
       e.preventDefault()
       win.location.hash = @getAttribute('data-to')
       win.dispatchEvent(new HashChangeEvent('hashchange'))
-      return
 
     scrollToSectionEl = (el) ->
       dest = doc.getElementsByClassName(el)[0]
@@ -74,7 +71,6 @@ require [
       to = dest.offsetTop - 180
       new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
         body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
-        return
       ).start()
 
     selectSection = (e) ->
@@ -89,7 +85,7 @@ require [
       setup()
 
     getAspect = ->
-      return win.innerWidth / win.innerHeight
+      win.innerWidth / win.innerHeight
 
     moveCamera = ->
       camera.position.x += (mouse.x - camera.position.x) * 0.06
@@ -150,7 +146,6 @@ require [
       win.addEventListener 'resize', resize, false
       win.addEventListener 'hashchange', selectSection, false
       selectSection() if win.location.hash.length and hash isnt 'glitch'
-      return
 
     mousemove = (e) ->
       e.preventDefault()
@@ -158,7 +153,6 @@ require [
       mouse.x = e.clientX - halfx
       mouse.y = e.clientY - halfy
       moveCamera()
-      return
 
     scroll = () ->
       scrollY = (@y or win.pageYOffset) - win.pageYOffset
@@ -170,21 +164,17 @@ require [
         group.rotation.x += 0.08
         group.rotation.y += 0.024
         group.rotation.z += 0.018
-        return
       if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         group.rotation.x -= 0.08
         group.rotation.y -= 0.024
         group.rotation.z -= 0.018
-        return
-      return
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
       camera.aspect = getAspect()
       camera.updateProjectionMatrix()
       renderer.setSize win.innerWidth, win.innerHeight + 100 if hash isnt 'glitch'
-      return
 
     do ->
       if webGLEnabled
@@ -198,6 +188,3 @@ require [
       nav_item.addEventListener 'click', navClick for nav_item in nav
       internal_item.addEventListener 'click', internalClick for internal_item in internal
       external_item.setAttribute 'target', '_blank' for external_item in external
-      return
-    return
-  return
