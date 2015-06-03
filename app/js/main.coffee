@@ -4,14 +4,15 @@ require [
   'libs/Tween'
   'libs/RequestAnimationFrame'
 ], ->
-  monSite = do ->
+  website = do ->
     doc = document
     win = window
-    animSpeed = 1200
     ease = TWEEN.Easing.Quadratic.Out
-    purple = 0xff01ff
-    blue = 0x22ffff
+    colors = [0xff01ff, 0x22ffff]
     body = doc.body
+    nav = doc.querySelectorAll '[data-to]'
+    internal = doc.querySelectorAll '[data-internal]'
+    external = doc.querySelectorAll 'section a:not([data-internal]):not([data-to])'
     webGLEnabled = check()
     hash = content = sections = scene = camera = group = geometry = renderer = null
     top = doc.getElementsByClassName('top')[0]
@@ -29,11 +30,7 @@ require [
       Math.floor Math.random() * (max - min + 1) + min
 
     getRandomHue = ->
-      hues = [
-        purple
-        blue
-      ]
-      hues[Math.floor(hues.length * Math.random())]
+      colors[Math.floor(colors.length * Math.random())]
 
     getGeom = ->
       size = getRandNum(60, 120)
@@ -59,20 +56,6 @@ require [
             child.rotation.y += 0.003
             child.rotation.z += 0.001
         render()
-      return
-
-    bindExternalLinks = ->
-      links = doc.querySelectorAll('section a:not([data-internal]):not([data-to])')
-      link.setAttribute 'target', '_blank' for link in links
-      return
-
-    bindInternalLinks = ->
-      links = doc.querySelectorAll('[data-internal]')
-      link.addEventListener 'click', internalClick for link in links
-
-    bindMainNav = ->
-      links = doc.querySelectorAll('[data-to]')
-      link.addEventListener 'click', navClick for link in links
       return
 
     internalClick = (e) ->
@@ -148,7 +131,7 @@ require [
         mesh.rotation.y = Math.random() * 2 * Math.PI
         mesh.rotation.z = Math.random() * 2 * Math.PI
         group.add mesh
-      lineMaterial = new (THREE.LineBasicMaterial)(color: blue)
+      lineMaterial = new (THREE.LineBasicMaterial)(color: colors[1])
       line = new (THREE.Line)(geometry, lineMaterial)
       light = new (THREE.DirectionalLight)(0xffffff, 1.2)
       light.position.fromArray [
@@ -212,9 +195,9 @@ require [
         body.setAttribute 'class', ''
       setTitle()
       animate()
-      bindMainNav()
-      bindInternalLinks()
-      bindExternalLinks()
+      nav_item.addEventListener 'click', navClick for nav_item in nav
+      internal_item.addEventListener 'click', internalClick for internal_item in internal
+      external_item.setAttribute 'target', '_blank' for external_item in external
       return
     return
   return
