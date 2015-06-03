@@ -102,7 +102,6 @@ require [
       geometry = new (THREE.Geometry)
       hash = win.location.hash.replace('#','')
       renderer = new (THREE.WebGLRenderer)(alpha: true)
-      internal = document.querySelectorAll('[data-internal]')
       if hash isnt 'glitch'
         internal[0].setAttribute 'class', 'hidden'
         internal[1].setAttribute 'class', ''
@@ -142,9 +141,7 @@ require [
       scene.add group
       three.setAttribute 'class', 'three visible'
       three.appendChild renderer.domElement
-      doc.addEventListener 'mousemove', mousemove, false
       win.addEventListener 'resize', resize, false
-      win.addEventListener 'hashchange', selectSection, false
       selectSection() if win.location.hash.length and hash isnt 'glitch'
 
     mousemove = (e) ->
@@ -152,7 +149,7 @@ require [
       mouse.clientY = e.clientY
       mouse.x = e.clientX - halfx
       mouse.y = e.clientY - halfy
-      moveCamera()
+      moveCamera() if webGLEnabled
 
     scroll = () ->
       scrollY = (@y or win.pageYOffset) - win.pageYOffset
@@ -161,14 +158,16 @@ require [
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY is 'UP'
         top.setAttribute 'class', 'top show'
-        group.rotation.x += 0.08
-        group.rotation.y += 0.024
-        group.rotation.z += 0.018
+        if webGLEnabled
+          group.rotation.x += 0.08
+          group.rotation.y += 0.024
+          group.rotation.z += 0.018
       if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
-        group.rotation.x -= 0.08
-        group.rotation.y -= 0.024
-        group.rotation.z -= 0.018
+        if webGLEnabled
+          group.rotation.x -= 0.08
+          group.rotation.y -= 0.024
+          group.rotation.z -= 0.018
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
@@ -179,12 +178,14 @@ require [
     do ->
       if webGLEnabled
         setup()
+        internal_item.addEventListener 'click', internalClick for internal_item in internal
       else
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
         body.setAttribute 'class', ''
       setTitle()
       animate()
+      win.addEventListener 'hashchange', selectSection, false
+      doc.addEventListener 'mousemove', mousemove, false
       nav_item.addEventListener 'click', navClick for nav_item in nav
-      internal_item.addEventListener 'click', internalClick for internal_item in internal
       external_item.setAttribute 'target', '_blank' for external_item in external
