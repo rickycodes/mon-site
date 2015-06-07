@@ -90,9 +90,9 @@ require [
       win.innerWidth / win.innerHeight
 
     moveCamera = ->
-      camera.position.x += (mouse.x - camera.position.x) * .008
-      camera.position.y += (- mouse.y - camera.position.y) * .008
-      camera.position.z += (- mouse.y - camera.position.y) * .008
+      camera.position.x += (mouse.x - camera.position.x) * .08
+      camera.position.y += (- mouse.y - camera.position.y) * .08
+      camera.position.z += (- mouse.y - camera.position.y) * .08
       camera.lookAt scene.position
 
     setup = ->
@@ -161,15 +161,11 @@ require [
       if directionY is 'UP'
         top.setAttribute 'class', 'top show'
         if webGLEnabled
-          group.rotation.x += .006
-          group.rotation.y += .007
-          group.rotation.z += .008
+          group.rotation.x += .009
       if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         if webGLEnabled
-          group.rotation.x -= .006
-          group.rotation.y -= .007
-          group.rotation.z -= .008
+          group.rotation.x -= .009
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
