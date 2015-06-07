@@ -7,7 +7,7 @@ require [
   website = do ->
     doc = document
     win = window
-    ease = TWEEN.Easing.Quadratic.Out
+    ease = TWEEN.Easing.Exponential.Out
     colors = [0xff01ff, 0x22ffff]
     body = doc.body
     nav = doc.querySelectorAll '[data-to]'
@@ -17,7 +17,9 @@ require [
     hash = content = sections = scene = camera = group = geometry = renderer = null
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
-
+    amount = 40
+    speed = 900
+    linewidth = 2
     halfx = win.innerWidth / 2
     halfy = win.innerHeight / 2
 
@@ -51,9 +53,9 @@ require [
       if webGLEnabled
         for child in group.children
           if child not instanceof THREE.Line
-            child.rotation.x += 0.002
-            child.rotation.y += 0.003
-            child.rotation.z += 0.001
+            child.rotation.x += .002
+            child.rotation.y += .003
+            child.rotation.z += .001
         render()
 
     internalClick = (e) ->
@@ -69,7 +71,7 @@ require [
       dest = doc.getElementsByClassName(el)[0]
       from = 0 or body.scrollTop or doc.documentElement.scrollTop
       to = dest.offsetTop - 180
-      new (TWEEN.Tween)(y: from).to(y: to).easing(ease).onUpdate(->
+      new (TWEEN.Tween)(y: from).to(y: to, speed).easing(ease).onUpdate(->
         body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
       ).start()
 
@@ -88,9 +90,9 @@ require [
       win.innerWidth / win.innerHeight
 
     moveCamera = ->
-      camera.position.x += (mouse.x - camera.position.x) * 0.06
-      camera.position.y += (- mouse.y - camera.position.y) * 0.06
-      camera.position.z += (- mouse.y - camera.position.y) * 0.06
+      camera.position.x += (mouse.x - camera.position.x) * .008
+      camera.position.y += (- mouse.y - camera.position.y) * .008
+      camera.position.z += (- mouse.y - camera.position.y) * .008
       camera.lookAt scene.position
 
     setup = ->
@@ -115,7 +117,7 @@ require [
       three = doc.getElementsByClassName('three')[0]
       sections = doc.getElementsByTagName('section')
       section.setAttribute 'style', 'margin-bottom: 1000px !important;' for section in sections
-      for num in [1..30]
+      for num in [1..amount]
         material = new (THREE.MeshPhongMaterial)(color: getRandomHue())
         mesh = new (THREE.Mesh)(getGeom(), material)
         mesh.position.x = Math.random() * 1200 - 600
@@ -126,7 +128,7 @@ require [
         mesh.rotation.y = Math.random() * 2 * Math.PI
         mesh.rotation.z = Math.random() * 2 * Math.PI
         group.add mesh
-      lineMaterial = new (THREE.LineBasicMaterial)(color: colors[1])
+      lineMaterial = new (THREE.LineBasicMaterial)(color: colors[1], linewidth: linewidth, fog: true)
       line = new (THREE.Line)(geometry, lineMaterial)
       light = new (THREE.DirectionalLight)(0xffffff, 1.2)
       light.position.fromArray [
@@ -159,15 +161,15 @@ require [
       if directionY is 'UP'
         top.setAttribute 'class', 'top show'
         if webGLEnabled
-          group.rotation.x += 0.08
-          group.rotation.y += 0.024
-          group.rotation.z += 0.018
+          group.rotation.x += .006
+          group.rotation.y += .007
+          group.rotation.z += .008
       if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         if webGLEnabled
-          group.rotation.x -= 0.08
-          group.rotation.y -= 0.024
-          group.rotation.z -= 0.018
+          group.rotation.x -= .006
+          group.rotation.y -= .007
+          group.rotation.z -= .008
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
