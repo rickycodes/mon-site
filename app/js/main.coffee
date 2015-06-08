@@ -19,6 +19,7 @@ require [
     mouse = {}
     amount = 40
     speed = 900
+    rotAmount = .016
     linewidth = 2
     halfx = win.innerWidth / 2
     halfy = win.innerHeight / 2
@@ -161,11 +162,11 @@ require [
       if directionY is 'UP'
         top.setAttribute 'class', 'top show'
         if webGLEnabled
-          group.rotation.x += .009
+          group.rotation.x += rotAmount
       if directionY is 'DOWN'
         top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
         if webGLEnabled
-          group.rotation.x -= .009
+          group.rotation.x -= rotAmount
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
