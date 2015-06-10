@@ -106,10 +106,10 @@ require [
       hash = win.location.hash.replace('#','')
       renderer = new (THREE.WebGLRenderer)(alpha: true)
       if hash isnt 'glitch'
-        body.classList.add 'glitch'
+        body.classList.remove 'glitch'
         renderer.setSize win.innerWidth, win.innerHeight + 100
       else
-        body.classList.remove 'glitch'
+        body.classList.add 'glitch'
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
