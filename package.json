@@ -5,7 +5,7 @@
   "scripts": {
     "test": "intern-runner config=tests/intern reporters=pretty",
     "start": "cat sig.md && harp server app",
-    "build": "harp compile app"
+    "build": "harp compile app && echo static files built!"
   },
   "author": "ricky miller caterpillar",
   "devDependencies": {
