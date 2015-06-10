@@ -91,9 +91,9 @@ require [
       win.innerWidth / win.innerHeight
 
     moveCamera = ->
-      camera.position.x += (mouse.x - camera.position.x) * .08
-      camera.position.y += (- mouse.y - camera.position.y) * .08
-      camera.position.z += (- mouse.y - camera.position.y) * .08
+      camera.position.x += (mouse.x - camera.position.x) * .008
+      camera.position.y += (- mouse.y - camera.position.y) * .008
+      camera.position.z += (- mouse.y - camera.position.y) * .008
       camera.lookAt scene.position
 
     setup = ->
