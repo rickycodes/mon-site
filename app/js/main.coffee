@@ -97,7 +97,7 @@ require [
       camera.lookAt scene.position
 
     setup = ->
-      body.setAttribute 'class', 'animate'
+      body.classList.remove 'loading'
       scene = new (THREE.Scene)
       camera = new (THREE.PerspectiveCamera)(75, getAspect(), 1, 2000)
       camera.position.z = 400
@@ -106,12 +106,10 @@ require [
       hash = win.location.hash.replace('#','')
       renderer = new (THREE.WebGLRenderer)(alpha: true)
       if hash isnt 'glitch'
-        internal[0].setAttribute 'class', 'hidden'
-        internal[1].setAttribute 'class', ''
+        body.classList.add 'glitch'
         renderer.setSize win.innerWidth, win.innerHeight + 100
       else
-        internal[0].setAttribute 'class', ''
-        internal[1].setAttribute 'class', 'hidden'
+        body.classList.remove 'glitch'
       content = doc.getElementsByClassName('content')[0]
       top = doc.getElementsByClassName('top')[0]
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
@@ -142,7 +140,7 @@ require [
       group.add line
       scene.add light
       scene.add group
-      three.setAttribute 'class', 'three visible'
+      three.classList.add 'visible'
       three.appendChild renderer.domElement
       win.addEventListener 'resize', resize, false
       selectSection() if win.location.hash.length and hash isnt 'glitch'
@@ -160,11 +158,11 @@ require [
       @y = win.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY is 'UP'
-        top.setAttribute 'class', 'top show'
+        top.classList.remove 'hide'
         if webGLEnabled
           group.rotation.x += rotAmount
       if directionY is 'DOWN'
-        top.setAttribute 'class', 'top hide' if scrollTop > 200 and mouse.clientY > 140
+        top.classList.add 'hide' if scrollTop > 200 and mouse.clientY > 140
         if webGLEnabled
           group.rotation.x -= rotAmount
 
@@ -177,11 +175,12 @@ require [
     do ->
       if webGLEnabled
         setup()
+        body.classList.add 'animate'
         internal_item.addEventListener 'click', internalClick for internal_item in internal
       else
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
-        body.setAttribute 'class', ''
+        body.classList.remove 'loading'
       setTitle()
       animate()
       win.addEventListener 'hashchange', selectSection, false

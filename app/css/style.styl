@@ -367,8 +367,14 @@ img.me
 
 	border-radius(4px)
 
-.hidden
+a[data-internal='glitch']
 	display none
+
+.glitch
+	a[data-internal='']
+		display none
+	a[data-internal='glitch']
+		display inline-block
 
 @media only screen and (max-width: 960px)
 	.top
