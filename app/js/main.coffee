@@ -187,15 +187,15 @@ require [
     do ->
       if webGLEnabled
         setup()
-        body.classList.add 'animate'
-        internal_item.addEventListener 'click', internalClick for internal_item in internal
       else
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
         body.classList.remove 'loading'
       setTitle()
       animate()
+      body.classList.add 'animate'
       win.addEventListener 'hashchange', selectSection, false
       doc.addEventListener 'mousemove', mousemove, false
       nav_item.addEventListener 'click', navClick for nav_item in nav
       external_item.setAttribute 'target', '_blank' for external_item in external
+      internal_item.addEventListener 'click', internalClick for internal_item in internal
