@@ -1,13 +1,13 @@
 require [
   'libs/WebGLCheck'
   'libs/Three'
-  'libs/Tween'
+  'libs/TweenMax.min'
   'libs/RequestAnimationFrame'
 ], ->
   website = do ->
     doc = document
     win = window
-    ease = TWEEN.Easing.Exponential.Out
+    ease = Expo.easeOut
     colors = [0xff01ff, 0x22ffff]
     body = doc.body
     nav = doc.querySelectorAll '[data-to]'
@@ -18,8 +18,9 @@ require [
     top = doc.getElementsByClassName('top')[0]
     mouse = {}
     amount = 40
-    speed = 900
-    rotAmount = .016
+    speed = .9
+    rotAmount = .2
+    moveAmount = .04
     linewidth = 2
     halfx = win.innerWidth / 2
     halfy = win.innerHeight / 2
@@ -49,7 +50,6 @@ require [
 
     animate = ->
       requestAnimationFrame animate
-      TWEEN.update()
       scroll()
       if webGLEnabled
         for child in group.children
@@ -70,11 +70,15 @@ require [
 
     scrollToSectionEl = (el) ->
       dest = doc.getElementsByClassName(el)[0]
-      from = 0 or body.scrollTop or doc.documentElement.scrollTop
-      to = dest.offsetTop - 180
-      new (TWEEN.Tween)(y: from).to(y: to, speed).easing(ease).onUpdate(->
-        body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor(@y)
-      ).start()
+      scrollObj =
+        value: 0 or body.scrollTop or doc.documentElement.scrollTop
+
+      TweenMax.to scrollObj, speed,
+        value: dest.offsetTop - 180
+        ease: ease
+        onUpdate: (tween) ->
+          body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor tween.target.value
+        onUpdateParams: [ '{self}' ]
 
     selectSection = (e) ->
       location = win.location.hash
@@ -91,16 +95,16 @@ require [
       win.innerWidth / win.innerHeight
 
     moveCamera = ->
-      camera.position.x += (mouse.x - camera.position.x) * .008
-      camera.position.y += (- mouse.y - camera.position.y) * .008
-      camera.position.z += (- mouse.y - camera.position.y) * .008
+      camera.position.x += (mouse.x - camera.position.x) * moveAmount
+      camera.position.y += (- mouse.y - camera.position.y) * moveAmount
+      camera.position.z += (- mouse.y - camera.position.y) * moveAmount
       camera.lookAt scene.position
 
     setup = ->
       body.classList.remove 'loading'
       scene = new (THREE.Scene)
       camera = new (THREE.PerspectiveCamera)(75, getAspect(), 1, 2000)
-      camera.position.z = 400
+      camera.position.z = 600
       group = new (THREE.Object3D)
       geometry = new (THREE.Geometry)
       hash = win.location.hash.replace('#','')
@@ -152,19 +156,27 @@ require [
       mouse.y = e.clientY - halfy
       moveCamera() if webGLEnabled
 
-    scroll = () ->
+    tweenScroll = (to) ->
+      if webGLEnabled
+        TweenMax.to group.rotation, speed + 1,
+          x: to
+          overwrite: 'all'
+          ease: ease
+          onUpdate: (tween) ->
+            group.rotation.x = tween.target.x
+          onUpdateParams: [ '{self}' ]
+
+    scroll = ->
       scrollY = (@y or win.pageYOffset) - win.pageYOffset
       scrollTop = body.scrollTop or win.scrollTop or doc.documentElement.scrollTop
       @y = win.pageYOffset
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY is 'UP'
         top.classList.remove 'hide'
-        if webGLEnabled
-          group.rotation.x += rotAmount
-      if directionY is 'DOWN'
+        tweenScroll group.rotation.x + rotAmount
+      else if directionY is 'DOWN'
         top.classList.add 'hide' if scrollTop > 200 and mouse.clientY > 140
-        if webGLEnabled
-          group.rotation.x -= rotAmount
+        tweenScroll group.rotation.x - rotAmount
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'
