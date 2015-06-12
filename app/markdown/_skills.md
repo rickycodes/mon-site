@@ -6,7 +6,7 @@ Excellent knowledge of HTML(5), CSS, Java$cript (including, but not limited to l
 
 ## back end
 
-Experience with PHP (including, but not limited to frameworks: [CakePHP](http://cakephp.org/), [CodeIgniter](http://ellislab.com/codeigniter) and [Zend](http://framework.zend.com/).) Extensive knowledge of PHP content management systems: [Wordpress](http://wordpress.org/), [ExpressionEngine](http://ellislab.com/expressionengine), [Drupal](https://drupal.org/) and [Joomla](http://www.joomla.org/). Familiarity with [Python](http://www.python.org/) and frameworks such as [Flask](http://flask.pocoo.org/) and [Django](https://www.djangoproject.com/). Excellent knowledge of [Node.js](http://nodejs.org/) and [NPM](https://npmjs.org/).
+Excellent knowledge of [Node.js](http://nodejs.org/) and [NPM](https://npmjs.org/). Experience with PHP (including, but not limited to frameworks: [CakePHP](http://cakephp.org/), [CodeIgniter](http://ellislab.com/codeigniter) and [Zend](http://framework.zend.com/).) Extensive knowledge of PHP content management systems: [Wordpress](http://wordpress.org/), [ExpressionEngine](http://ellislab.com/expressionengine), [Drupal](https://drupal.org/) and [Joomla](http://www.joomla.org/). Familiarity with [Python](http://www.python.org/) and frameworks such as [Flask](http://flask.pocoo.org/) and [Django](https://www.djangoproject.com/).
 
 ## data
 
