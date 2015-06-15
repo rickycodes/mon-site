@@ -78,7 +78,7 @@ require [
         ease: ease
         onUpdate: (tween) ->
           body.scrollTop = win.scrollTop = doc.documentElement.scrollTop = Math.floor tween.target.value
-        onUpdateParams: [ '{self}' ]
+        onUpdateParams: ['{self}']
 
     selectSection = (e) ->
       location = win.location.hash
@@ -101,7 +101,6 @@ require [
       camera.lookAt scene.position
 
     setup = ->
-      body.classList.remove 'loading'
       scene = new (THREE.Scene)
       camera = new (THREE.PerspectiveCamera)(75, getAspect(), 1, 2000)
       camera.position.z = 600
@@ -160,11 +159,11 @@ require [
       if webGLEnabled
         TweenMax.to group.rotation, speed + 1,
           x: to
-          overwrite: 'all'
+          overwrite: 5
           ease: ease
           onUpdate: (tween) ->
             group.rotation.x = tween.target.x
-          onUpdateParams: [ '{self}' ]
+          onUpdateParams: ['{self}']
 
     scroll = ->
       scrollY = (@y or win.pageYOffset) - win.pageYOffset
@@ -190,10 +189,10 @@ require [
       else
         content = doc.getElementsByClassName('content')[0]
         content.setAttribute 'style', 'padding-top:' + 220 + 'px; visibility: visible !important;'
-        body.classList.remove 'loading'
       setTitle()
       animate()
       body.classList.add 'animate'
+      body.classList.remove 'loading'
       win.addEventListener 'hashchange', selectSection, false
       doc.addEventListener 'mousemove', mousemove, false
       nav_item.addEventListener 'click', navClick for nav_item in nav
