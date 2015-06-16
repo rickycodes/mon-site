@@ -156,14 +156,13 @@ require [
       moveCamera() if webGLEnabled
 
     tweenScroll = (to) ->
-      if webGLEnabled
-        TweenMax.to group.rotation, speed + 1,
-          x: to
-          overwrite: 5
-          ease: ease
-          onUpdate: (tween) ->
-            group.rotation.x = tween.target.x
-          onUpdateParams: ['{self}']
+      TweenMax.to group.rotation, speed + 1,
+        x: to
+        overwrite: 5
+        ease: ease
+        onUpdate: (tween) ->
+          group.rotation.x = tween.target.x
+        onUpdateParams: ['{self}']
 
     scroll = ->
       scrollY = (@y or win.pageYOffset) - win.pageYOffset
@@ -172,10 +171,10 @@ require [
       directionY = if !scrollY then 'NONE' else if scrollY > 0 then 'UP' else 'DOWN'
       if directionY is 'UP'
         top.classList.remove 'hide'
-        tweenScroll group.rotation.x + rotAmount
+        tweenScroll group.rotation.x + rotAmount if webGLEnabled
       else if directionY is 'DOWN'
         top.classList.add 'hide' if scrollTop > 200 and mouse.clientY > 140
-        tweenScroll group.rotation.x - rotAmount
+        tweenScroll group.rotation.x - rotAmount if webGLEnabled
 
     resize = ->
       content.setAttribute 'style', 'padding-top:' + win.innerHeight + 'px; visibility: visible !important;'

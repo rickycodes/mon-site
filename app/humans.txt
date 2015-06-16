@@ -12,6 +12,6 @@
     Language: English
     Doctype: HTML5
     Software:
-      require.js: http://github.com/jrburke/requirejs
-      Tween.js: https://github.com/tweenjs/tween.js/tree/master
-      Three.js: http://threejs.org/
+      require.js: https://github.com/jrburke/requirejs
+      TweenMax: https://github.com/greensock/GreenSock-JS
+      Three.js: https://threejs.org/
