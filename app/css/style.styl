@@ -1,94 +1,6 @@
-@font-face {
-  font-family: 'Mono Social Icons Font';
-  src: url('../fonts/MonoSocialIconsFont-1.10.eot');
-  src: url('../fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'), url('../fonts/MonoSocialIconsFont-1.10.woff') format('woff'), url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'), url('../fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
-  src: url('../fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url("../fonts/apercu_regular-webfont.eot");
-  src: url("../fonts/apercu_regular-webfont.eot?#iefix")format("embedded-opentype"), url("../fonts/apercu_regular-webfont.woff") format("woff"), url("../fonts/apercu_regular-webfont.ttf") format("truetype"), url("../fonts/apercu_regular-webfont.svg#ApercuRegular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'ApercuMono';
-  src: url("../fonts/apercu_mono-webfont.eot");
-  src: url("../fonts/apercu_mono-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_mono-webfont.woff") format("woff"), url("../fonts/apercu_mono-webfont.ttf") format("truetype"), url("../fonts/apercu_mono-webfont.svg#ApercuMono") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url("../fonts/apercu_medium_italic-webfont.eot");
-  src: url("../fonts/apercu_medium_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_medium_italic-webfont.woff") format("woff"), url("../fonts/apercu_medium_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_medium_italic-webfont.svg#ApercuMediumItalic") format("svg");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url("../fonts/apercu_bold_italic-webfont.eot");
-  src: url("../fonts/apercu_bold_italic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/apercu_bold_italic-webfont.woff") format("woff"), url("../fonts/apercu_bold_italic-webfont.ttf") format("truetype"), url("../fonts/apercu_bold_italic-webfont.svg#ApercuBoldItalic") format("svg");
-  font-weight: bold;
-  font-style: italic;
-}
-
-primary = #ff00ff
-primary_tinted = #cc00cc
-secondary = #606
-secondary_tinted = #990099
-
-border-radius(n)
-	-webkit-border-radius n
-	-moz-border-radius n
-	border-radius n
-
-transition(n)
-	-webkit-transition all n ease
-	-moz-transition all n ease
-	-ms-transition all n ease
-	transition all n ease
-
-perspective(n)
-	-webkit-perspective n
-	-moz-perspective n
-	-ms-perspective n
-	perspective n
-
-perspective-origin(a,b)
-	-webkit-perspective-origin a b
-	-moz-perspective-origin a b
-	-ms-perspective-origin a b
-	perspective-origin a b
-
-transform-origin(a,b)
-	-webkit-transform-origin a b
-	-moz-transform-origin a b
-	-ms-transform-origin a b
-	transform-origin a b
-
-transform-style(s)
-	-webkit-transform-style s
-	-moz-transform-style s
-	-ms-transform-style s
-	transform-style s
-
-backface-visibility(v)
-	-webkit-backface-visibility v
-	-moz-backface-visibility v
-	backface-visibility v
-
-translate(x,y,z,r)
-	-webkit-transform translate3d(x,y,z) rotateX(r)
-	-moz-transform translate3d(x,y,z) rotateX(r)
-	-ms-transform translate3d(x,y,z) rotateX(r)
-	transform translate3d(x,y,z) rotateX(r)
+@import '_fonts'
+@import '_variables'
+@import '_mixins'
 
 *
 	box-sizing border-box
@@ -339,7 +251,7 @@ canvas
 	margin 40px 0
 
 .gallery div
-	width 33.33333333333333%
+	width calc(100%/3)
 	float left
 	text-align center
 
@@ -376,46 +288,4 @@ a[data-internal='']
 	a[data-internal='glitch']
 		display none
 
-@media only screen and (max-width: 960px)
-	.top
-		position absolute
-
-	.banner .col
-		display none
-
-	.banner .col:first-child
-		display inline-block
-		float left
-
-	.banner .col:first-child, nav
-		margin 2%
-
-	nav
-		text-align right
-		float right
-		vertical-align top
-		display inline-block
-
-	nav li
-		margin 4px 0 0 4px
-
-@media only screen and (max-width: 760px)
-	.gallery div
-		width 50%
-
-	img.me
-		width 100%
-
-@media only screen and (max-width: 500px)
-	.gallery div
-		width 100%
-
-	section
-		padding 0 36px 20px 36px
-
-	nav li
-		display block
-		margin-top 6px
-
-	.content
-		font-size 16px
+@import '_mobile'
