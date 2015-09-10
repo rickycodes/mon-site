@@ -1,0 +1,11 @@
+doctype
+html
+  head
+    title ricky.codes » 
+      != title
+    link(rel='stylesheet' href='/css/style.css')
+  body.post
+    h1= title
+    .date= date
+    .content
+      != yield

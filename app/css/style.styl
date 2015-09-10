@@ -142,6 +142,12 @@ section
 	background white
 	padding-top 40px
 
+	&.log
+		.date
+			&:after
+				content '»'
+				padding 0 10px
+
 h1
 	font-family Apercu
 	font-size 32px
@@ -288,4 +294,5 @@ a[data-internal='']
 	a[data-internal='glitch']
 		display none
 
+@import '_log'
 @import '_mobile'

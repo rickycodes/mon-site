@@ -12,7 +12,7 @@ require [
     body = doc.body
     nav = doc.querySelectorAll '[data-to]'
     internal = doc.querySelectorAll '[data-internal]'
-    external = doc.querySelectorAll 'section a:not([data-internal]):not([data-to])'
+    external = doc.querySelectorAll 'section a:not([data-internal]):not([data-to]):not([data-log])'
     webGLEnabled = check()
     hash = content = sections = scene = camera = group = geometry = renderer = null
     top = doc.getElementsByClassName('top')[0]

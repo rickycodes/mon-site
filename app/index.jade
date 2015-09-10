@@ -9,6 +9,17 @@ html(lang='en' prefix='og:http://ogp.me/ns#')
     != partial('partials/_nav')
     
     .content
+      section.log
+
+        h1 log:
+
+        ul
+        for post, slug in public.posts._data
+          li
+            h2
+              span.date= post.date
+              a(href='/posts/#{ slug }', data-log)= post.title
+
       section.about
 
         != partial('markdown/_about')
