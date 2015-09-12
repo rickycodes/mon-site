@@ -1,13 +1,21 @@
 .post
-  margin 40px
-  width 70%
-  max-width 1000px
-  
+  width 94%
+  margin 0 auto
+
   h1
     display block
     
+  h2
+    margin-bottom 0
+
   p
-    margin 40px 0
+    margin 20px 0
+    max-width 70%
+
+  small
+    color grey
+    font-size 12px
+    font-style italic
   
   .date
     font-size 90%
@@ -18,7 +26,17 @@
     border-radius(4px)
   
   .content
-    margin 20px 0
+    width 100%
+    max-width 100%
+
+    .hljs
+      color secondary
+
+    .hljs-string
+      color primary_tinted
+
+    .hljs-keyword, .hljs-built_in
+      color secondary_tinted
 
     pre, code
       background #F5F5F5

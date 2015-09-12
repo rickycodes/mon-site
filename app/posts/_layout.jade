@@ -13,3 +13,8 @@ html
     .date= date
     .content
       != yield
+script.
+  var links = document.getElementsByTagName('a');
+  Object.keys(links).map(function(e) {
+    return links[e].setAttribute('target', '_blank');
+  });
