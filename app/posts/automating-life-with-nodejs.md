@@ -1,17 +1,17 @@
-Recently, a friend of mine approached me regarding a task he was regularly performing. Everyday when the market closed he would visit <a href='http://www.hl.co.uk/shares/stock-market-summary/ftse-100'>hl.co.uk</a>, copy the market summary data, manually sort and format said data and include it in a blog post on his companies website. He was curious if this process could be automated somehow and how easy it would be to write such a program.
+Recently, a friend of mine approached me regarding a "life" task he was regularly performing. Everyday when the market closed he would visit <a href='http://www.hl.co.uk/shares/stock-market-summary/ftse-100'>hl.co.uk</a>, copy the market summary data, manually sort and format said data and include it in a blog post on his companies website. He was curious if this process could be automated somehow and how easy it would be to write such a program.
 
-## Why Node.js?
+## Why node.js?
 
-I like Node.js and believe JavaScript as a language is relatively easy to learn, understand and teach. I also felt that it was well suited to the problem at hand. (Obviously something similar could be written in python, C, whatever).
+I like <a href='https://nodejs.org/'>node.js</a> and believe JavaScript as a language is relatively easy to learn, understand and teach. I also felt that it was well suited to the problem at hand. (Obviously something similar could be written in python, C, whatever).
 
 ## Getting started
 
-The script needed to perform the above only _really_ requires two `node_modules`:
+I'm going to use two `node_modules` to write this script, <a href='https://github.com/cheeriojs/cheerio'>Cheerio</a> and node's own http interface (_you could use a plethora of other <a href='https://www.npmjs.com/'>npm</a> modules here, I'm sure_):
 
     const cheerio = require('cheerio')
     const http = require('http')
 
-<a href='https://github.com/cheeriojs/cheerio'>Cheerio</a> is <a href='http://jquery.com/'>jQuery</a> designed specifically for the server and will allow us to easily `find()` <a href='https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model'>DOM</a> nodes and retrieve their `text()` value. We'll be using the <a href='https://nodejs.org/api/http.html#apicontent'>http</a> interface to <a href='https://nodejs.org/api/http.html#http_http_get_options_callback'>`get()`</a> the HTML content:
+<a href='https://github.com/cheeriojs/cheerio'>Cheerio</a> is (_basically_) <a href='http://jquery.com/'>jQuery</a> designed specifically for the server and will allow us to easily `find()` <a href='https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model'>DOM</a> nodes and retrieve their `text()` value. We'll be using the <a href='https://nodejs.org/api/http.html#apicontent'>http</a> interface to <a href='https://nodejs.org/api/http.html#http_http_get_options_callback'>`get()`</a> the HTML content.
 
 The relevant URLs are:  
 <a href='http://www.hl.co.uk/shares/stock-market-summary/ftse-100/risers'>`http://www.hl.co.uk/shares/stock-market-summary/ftse-100/risers`</a>  
@@ -33,11 +33,22 @@ eg:
       })
     }).end()
 
-<small>(The above will log out the entire HTML document to the console)</small>
+The above will log out the entire HTML document @ <a href='http://www.hl.co.uk/shares/stock-market-summary/ftse-100/risers'>`http://www.hl.co.uk/shares/stock-market-summary/ftse-100/risers`</a> to the console:
 
-If we look at the 4 relevant URLs, we notice that the only distinguishing features between them are the last two paths, ie: `/ftse-100/`, `/ftse-aim-100/`, `risers` and `fallers`
+<img src='/posts/images/example-01.gif' />
 
-We'll use Node's <a href='https://nodejs.org/api/process.html#process_process_argv'>`process.argv`</a> so we can pass arguments to the script:
+If we look at the 4 relevant URLs, we notice that the only distinguishing features between them are the last two segments: `/ftse-100/` or `/ftse-aim-100/` and `risers` or `fallers`
+
+We'll use node's <a href='https://nodejs.org/api/process.html#process_process_argv'>`process.argv`</a> so we can pass arguments to the script to dynamically build target URLs:
+
+    const kind = {
+      '100': 'ftse-100/',
+      'aim': 'ftse-aim-100/'
+    }
+
+    const url = 'http://www.hl.co.uk/shares/stock-market-summary/' + kind[process.argv[2]] + process.argv[3]
+
+    console.log('target URL is: ' + url)
 
 ## Putting it all together:
 
